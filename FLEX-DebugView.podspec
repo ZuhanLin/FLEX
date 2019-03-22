@@ -30,11 +30,12 @@ Pod::Spec.new do |spec|
   spec.author           = { "Zuhan Lin" => "767678362@qq.com" }
   spec.social_media_url = "https://github.com/ZuhanLin/FLEX"
   spec.platform         = :ios, "8.0"
+  spec.module_name      = "FLEX"
   spec.source           = { :git => "https://github.com/ZuhanLin/FLEX.git", :tag => "#{spec.version}" }
   spec.source_files     = "Classes/**/*.{h,m}"
   spec.frameworks       = [ "Foundation", "UIKit", "CoreGraphics" ]
   spec.libraries        = [ "z", "sqlite3" ]
-  spec.resources        = "Resources/*"
+  spec.resources        = "Classes/Resources/*"
   spec.requires_arc     = true
   spec.public_header_files = [ "Classes/**/FLEXManager.h", "Classes/FLEX.h" ]
 end
