@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
-  spec.name             = "FLEX"
-  spec.version          = "2.4.0"
+  spec.name             = "FLEX-DebugView"
+  spec.version          = "2.4.1"
   spec.summary          = "A set of in-app debugging and exploration tools for iOS"
   spec.description      = <<-DESC
                         - Inspect and modify views in the hierarchy.
@@ -16,7 +16,7 @@ Pod::Spec.new do |spec|
                         - Dynamically view and modify `NSUserDefaults` values.
                         DESC
 
-  spec.homepage         = "https://github.com/Flipboard/FLEX"
+  spec.homepage         = "https://github.com/ZuhanLin/FLEX"
   spec.screenshots      = [ "http://engineering.flipboard.com/assets/flex/basic-view-exploration.gif",
                             "http://engineering.flipboard.com/assets/flex/advanced-view-editing.gif",
                             "http://engineering.flipboard.com/assets/flex/heap-browser.gif",
@@ -27,13 +27,14 @@ Pod::Spec.new do |spec|
                             "http://engineering.flipboard.com/assets/flex/flex-readme-reverse-2.png" ]
 
   spec.license          = { :type => "BSD", :file => "LICENSE" }
-  spec.author           = { "Ryan Olson" => "ryanolsonk@gmail.com" }
-  spec.social_media_url = "https://twitter.com/ryanolsonk"
+  spec.author           = { "Zuhan Lin" => "767678362@qq.com" }
+  spec.social_media_url = "https://github.com/ZuhanLin/FLEX"
   spec.platform         = :ios, "8.0"
-  spec.source           = { :git => "https://github.com/Flipboard/FLEX.git", :tag => "#{spec.version}" }
+  spec.source           = { :git => "https://github.com/ZuhanLin/FLEX.git", :tag => "#{spec.version}" }
   spec.source_files     = "Classes/**/*.{h,m}"
   spec.frameworks       = [ "Foundation", "UIKit", "CoreGraphics" ]
   spec.libraries        = [ "z", "sqlite3" ]
+  spec.resources        = "Resources/*"
   spec.requires_arc     = true
   spec.public_header_files = [ "Classes/**/FLEXManager.h", "Classes/FLEX.h" ]
 end

@@ -349,7 +349,7 @@
 		94A515241C4CA2080063292F /* FLEXToolbarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FLEXToolbarItem.m; path = Classes/Toolbar/FLEXToolbarItem.m; sourceTree = SOURCE_ROOT; };
 		94AAF0361BAF2E1F00DE8760 /* FLEXKeyboardHelpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXKeyboardHelpViewController.h; sourceTree = "<group>"; };
 		94AAF0371BAF2E1F00DE8760 /* FLEXKeyboardHelpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEXKeyboardHelpViewController.m; sourceTree = "<group>"; };
-		95101D632244879000AA2155 /* accesoryHandle_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = accesoryHandle_icon.png; path = ../Example/accesoryHandle_icon.png; sourceTree = "<group>"; };
+		95101D632244879000AA2155 /* accesoryHandle_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = accesoryHandle_icon.png; sourceTree = "<group>"; };
 		C395D6D721789BD800BEAD4D /* FLEXColorExplorerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FLEXColorExplorerViewController.h; sourceTree = "<group>"; };
 		C395D6D821789BD800BEAD4D /* FLEXColorExplorerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FLEXColorExplorerViewController.m; sourceTree = "<group>"; };
 		C3DA55FC21A76406005DDA60 /* FLEXMutableFieldEditorViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FLEXMutableFieldEditorViewController.h; sourceTree = "<group>"; };
@@ -410,19 +410,19 @@
 		3A4C94211B5B20570088C3F2 /* FLEX */ = {
 			isa = PBXGroup;
 			children = (
-				95101D632244879000AA2155 /* accesoryHandle_icon.png */,
 				3A4C94241B5B20570088C3F2 /* FLEX.h */,
 				94A515131C4CA1C00063292F /* FLEXManager.h */,
-				94A515111C4C9C1B0063292F /* Manager */,
-				94A515121C4C9E7B0063292F /* ExplorerInterface */,
 				3A4C94661B5B21410088C3F2 /* Editing */,
-				3A4C948E1B5B21410088C3F2 /* Toolbar */,
+				94A515121C4C9E7B0063292F /* ExplorerInterface */,
 				3A4C949A1B5B21410088C3F2 /* GlobalStateExplorers */,
+				94A515111C4C9C1B0063292F /* Manager */,
 				3A4C94B41B5B21410088C3F2 /* Network */,
 				3A4C943B1B5B21410088C3F2 /* ObjectExplorers */,
+				95101D6722448C2D00AA2155 /* Resources */,
+				3A4C94221B5B20570088C3F2 /* Supporting Files */,
+				3A4C948E1B5B21410088C3F2 /* Toolbar */,
 				3A4C94541B5B21410088C3F2 /* Utility */,
 				3A4C945F1B5B21410088C3F2 /* ViewHierarchy */,
-				3A4C94221B5B20570088C3F2 /* Supporting Files */,
 			);
 			name = FLEX;
 			path = Classes;
@@ -698,6 +698,14 @@
 				94A5151C1C4CA1F10063292F /* FLEXWindow.m */,
 			);
 			name = ExplorerInterface;
+			sourceTree = "<group>";
+		};
+		95101D6722448C2D00AA2155 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				95101D632244879000AA2155 /* accesoryHandle_icon.png */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
