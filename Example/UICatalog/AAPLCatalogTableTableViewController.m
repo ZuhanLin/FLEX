@@ -5,6 +5,7 @@
 //  Created by Ryan Olson on 7/17/14.
 
 #import "AAPLCatalogTableTableViewController.h"
+#import "TestView.h"
 
 #if DEBUG
 // FLEX should only be compiled and used in debug builds.
@@ -28,6 +29,8 @@
 #if DEBUG
     // This call shows the FLEX toolbar if it's not already shown.
     [[FLEXManager sharedManager] showExplorer];
+    TestView *testView = (TestView *)[[[NSBundle mainBundle] loadNibNamed:@"TestView" owner:nil options:nil] lastObject];
+    [[FLEXManager sharedManager] showDebugControlView:testView];
 #endif
 }
 

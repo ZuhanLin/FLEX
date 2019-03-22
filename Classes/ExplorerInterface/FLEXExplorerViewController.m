@@ -27,6 +27,7 @@ typedef NS_ENUM(NSUInteger, FLEXExplorerMode) {
 @interface FLEXExplorerViewController () <FLEXHierarchyTableViewControllerDelegate, FLEXGlobalsTableViewControllerDelegate>
 
 @property (nonatomic, strong) FLEXExplorerToolbar *explorerToolbar;
+@property (nonatomic, strong) UIView *accesoryToolView;
 
 /// Tracks the currently active tool/mode
 @property (nonatomic, assign) FLEXExplorerMode currentMode;
@@ -109,6 +110,31 @@ typedef NS_ENUM(NSUInteger, FLEXExplorerMode) {
     [self setupToolbarActions];
     [self setupToolbarGestures];
     
+    // 添加customContentView
+    self.accesoryToolView = [[UIView alloc] init];
+    self.accesoryToolView.clipsToBounds = YES;
+    self.accesoryToolView.backgroundColor = [UIColor redColor];
+    [self.view addSubview:self.accesoryToolView];
+    self.accesoryToolView.frame = CGRectMake(0, CGRectGetMaxY(self.explorerToolbar.frame), CGRectGetWidth(self.explorerToolbar.frame), 300);
+    
+    UIView *accesoryToolViewHandleView = [[UIView alloc] init];
+    accesoryToolViewHandleView.backgroundColor = [UIColor blueColor];
+    accesoryToolViewHandleView.frame = CGRectMake(0,
+                                                  CGRectGetHeight(self.accesoryToolView.frame) - 20,
+                                                  CGRectGetWidth(self.accesoryToolView.frame),
+                                                  20);
+    accesoryToolViewHandleView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth;
+    [self.accesoryToolView addSubview:accesoryToolViewHandleView];
+    
+    UIImageView *handleImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"accesoryHandle_icon.png"]];
+    handleImageView.frame = CGRectMake(0, 0, CGRectGetWidth(self.accesoryToolView.frame), 20);
+    [accesoryToolViewHandleView addSubview:handleImageView];
+    
+    
+    UIPanGestureRecognizer *accesoryToolViewHandlePanGR = [[UIPanGestureRecognizer alloc] initWithTarget:self
+                                                                                                  action:@selector(handleToolAccesoryPanGesture:)];
+    [accesoryToolViewHandleView addGestureRecognizer:accesoryToolViewHandlePanGR];
+    
     // View selection
     UITapGestureRecognizer *selectionTapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSelectionTap:)];
     [self.view addGestureRecognizer:selectionTapGR];
@@ -126,6 +152,10 @@ typedef NS_ENUM(NSUInteger, FLEXExplorerMode) {
     [self updateButtonStates];
 }
 
+- (void)showDebugView:(UIView *)debugView
+{
+    [self.accesoryToolView insertSubview:debugView atIndex:0];
+}
 
 #pragma mark - Rotation
 
@@ -442,6 +472,36 @@ typedef NS_ENUM(NSUInteger, FLEXExplorerMode) {
     [self.explorerToolbar.selectedViewDescriptionContainer addGestureRecognizer:self.detailsTapGR];
 }
 
+- (void)handleToolAccesoryPanGesture:(UIPanGestureRecognizer *)panGR
+{
+    UIView *panView = panGR.view;
+    
+    CGPoint translation = [panGR translationInView:panView];
+    [panGR setTranslation:CGPointZero inView:panView];
+    
+    UIGestureRecognizerState state = panGR.state;
+    switch (state) {
+            case UIGestureRecognizerStateBegan:
+            
+            break;
+            
+            case UIGestureRecognizerStateChanged:
+        {
+            CGRect frame = self.accesoryToolView.frame;
+            frame.size.height = MIN(MAX(20, frame.size.height + translation.y), [UIScreen mainScreen].bounds.size.height - CGRectGetMinY(self.accesoryToolView.frame) - 20);
+            self.accesoryToolView.frame = frame;
+        }
+            break;
+            
+            case UIGestureRecognizerStateEnded:
+            
+            break;
+            
+        default:
+            break;
+    }
+}
+
 - (void)handleToolbarPanGesture:(UIPanGestureRecognizer *)panGR
 {
     switch (panGR.state) {
@@ -482,6 +542,7 @@ typedef NS_ENUM(NSUInteger, FLEXExplorerMode) {
     }
 
     self.explorerToolbar.frame = unconstrainedFrame;
+    self.accesoryToolView.frame = CGRectMake(0, CGRectGetMaxY(self.explorerToolbar.frame), CGRectGetWidth(self.explorerToolbar.frame), CGRectGetHeight(self.accesoryToolView.frame));
 
     [[NSUserDefaults standardUserDefaults] setDouble:unconstrainedFrame.origin.y forKey:kFLEXToolbarTopMarginDefaultsKey];
 }
@@ -722,6 +783,10 @@ typedef NS_ENUM(NSUInteger, FLEXExplorerMode) {
     BOOL shouldReceiveTouch = NO;
     
     CGPoint pointInLocalCoordinates = [self.view convertPoint:pointInWindowCoordinates fromView:nil];
+    
+    if (CGRectContainsPoint(self.accesoryToolView.frame, pointInLocalCoordinates)) {
+        shouldReceiveTouch = YES;
+    }
     
     // Always if it's on the toolbar
     if (CGRectContainsPoint(self.explorerToolbar.frame, pointInLocalCoordinates)) {

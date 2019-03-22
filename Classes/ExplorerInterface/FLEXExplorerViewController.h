@@ -34,6 +34,8 @@
 - (void)handleRightArrowKeyPressed;
 - (void)handleLeftArrowKeyPressed;
 
+- (void)showDebugView:(UIView *)debugView;
+
 @end
 
 @protocol FLEXExplorerViewControllerDelegate <NSObject>

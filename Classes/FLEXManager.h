@@ -21,6 +21,8 @@ typedef UIViewController *(^FLEXCustomContentViewerFuture)(NSData *data);
 - (void)hideExplorer;
 - (void)toggleExplorer;
 
+- (void)showDebugControlView:(UIView *)debugView;
+
 #pragma mark - Network Debugging
 
 /// If this property is set to YES, FLEX will swizzle NSURLConnection*Delegate and NSURLSession*Delegate methods

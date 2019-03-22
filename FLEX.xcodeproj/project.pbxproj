@@ -166,6 +166,7 @@
 		94AAF0381BAF2E1F00DE8760 /* FLEXKeyboardHelpViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 94AAF0361BAF2E1F00DE8760 /* FLEXKeyboardHelpViewController.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		94AAF0391BAF2E1F00DE8760 /* FLEXKeyboardHelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94AAF0371BAF2E1F00DE8760 /* FLEXKeyboardHelpViewController.m */; };
 		94AAF03A1BAF2F0300DE8760 /* FLEXKeyboardShortcutManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 942DCD821BAE0AD300DB5DC2 /* FLEXKeyboardShortcutManager.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		95101D642244879000AA2155 /* accesoryHandle_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 95101D632244879000AA2155 /* accesoryHandle_icon.png */; };
 		C395D6D921789BD800BEAD4D /* FLEXColorExplorerViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = C395D6D721789BD800BEAD4D /* FLEXColorExplorerViewController.h */; };
 		C395D6DA21789BD800BEAD4D /* FLEXColorExplorerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C395D6D821789BD800BEAD4D /* FLEXColorExplorerViewController.m */; };
 		C3DA55FE21A76406005DDA60 /* FLEXMutableFieldEditorViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = C3DA55FC21A76406005DDA60 /* FLEXMutableFieldEditorViewController.h */; };
@@ -348,6 +349,7 @@
 		94A515241C4CA2080063292F /* FLEXToolbarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FLEXToolbarItem.m; path = Classes/Toolbar/FLEXToolbarItem.m; sourceTree = SOURCE_ROOT; };
 		94AAF0361BAF2E1F00DE8760 /* FLEXKeyboardHelpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXKeyboardHelpViewController.h; sourceTree = "<group>"; };
 		94AAF0371BAF2E1F00DE8760 /* FLEXKeyboardHelpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEXKeyboardHelpViewController.m; sourceTree = "<group>"; };
+		95101D632244879000AA2155 /* accesoryHandle_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = accesoryHandle_icon.png; path = ../Example/accesoryHandle_icon.png; sourceTree = "<group>"; };
 		C395D6D721789BD800BEAD4D /* FLEXColorExplorerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FLEXColorExplorerViewController.h; sourceTree = "<group>"; };
 		C395D6D821789BD800BEAD4D /* FLEXColorExplorerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FLEXColorExplorerViewController.m; sourceTree = "<group>"; };
 		C3DA55FC21A76406005DDA60 /* FLEXMutableFieldEditorViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FLEXMutableFieldEditorViewController.h; sourceTree = "<group>"; };
@@ -408,6 +410,7 @@
 		3A4C94211B5B20570088C3F2 /* FLEX */ = {
 			isa = PBXGroup;
 			children = (
+				95101D632244879000AA2155 /* accesoryHandle_icon.png */,
 				3A4C94241B5B20570088C3F2 /* FLEX.h */,
 				94A515131C4CA1C00063292F /* FLEXManager.h */,
 				94A515111C4C9C1B0063292F /* Manager */,
@@ -877,6 +880,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				04F1CA191C137CF1000A52B0 /* LICENSE in Resources */,
+				95101D642244879000AA2155 /* accesoryHandle_icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -79,6 +79,11 @@
     self.explorerWindow.hidden = NO;
 }
 
+- (void)showDebugControlView:(UIView *)debugView
+{
+    [self.explorerViewController showDebugView:debugView];
+}
+
 - (void)hideExplorer
 {
     self.explorerWindow.hidden = YES;
