@@ -22,6 +22,7 @@ typedef UIViewController *(^FLEXCustomContentViewerFuture)(NSData *data);
 - (void)toggleExplorer;
 
 - (void)showDebugControlView:(UIView *)debugView;
+- (void)debugResignKeyWindow;
 
 #pragma mark - Network Debugging
 

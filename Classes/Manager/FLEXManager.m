@@ -84,6 +84,13 @@
     [self.explorerViewController showDebugView:debugView];
 }
 
+- (void)debugResignKeyWindow
+{
+    UIWindow *mainWindow = [[[UIApplication sharedApplication] delegate] window];
+    
+    [mainWindow makeKeyWindow];
+}
+
 - (void)hideExplorer
 {
     self.explorerWindow.hidden = YES;
@@ -145,7 +152,6 @@
     // Only when the explorer view controller wants it because it needs to accept key input & affect the status bar.
     return [self.explorerViewController wantsWindowToBecomeKey];
 }
-
 
 #pragma mark - FLEXExplorerViewControllerDelegate
 

@@ -60,6 +60,13 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <state key="normal" title="Button"/>
                 </button>
+                <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="whg-dI-oyQ">
+                    <rect key="frame" x="104" y="50" width="198" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <nil key="textColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
@@ -67,6 +74,9 @@
                 <constraint firstItem="C8q-ZR-XFm" firstAttribute="centerX" secondItem="3dv-iE-Owy" secondAttribute="centerX" id="y2U-ny-VCo"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="phoneTextField" destination="whg-dI-oyQ" id="SQh-UC-5cJ"/>
+            </connections>
             <point key="canvasLocation" x="13.6" y="-175.41229385307346"/>
         </view>
     </objects>

@@ -47,7 +47,7 @@
 		779B1EF51C0C4F25001F5E49 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 779B1EF41C0C4F25001F5E49 /* libsqlite3.dylib */; };
 		943203FE1978F42F00E24DB3 /* AAPLCatalogTableTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 943203FD1978F42F00E24DB3 /* AAPLCatalogTableTableViewController.m */; };
 		94CB4D431A97183E0054A905 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 94CB4D421A97183E0054A905 /* libz.dylib */; };
-		95101D662244895F00AA2155 /* accesoryHandle_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 95101D65224488F300AA2155 /* accesoryHandle_icon.png */; };
+		95101D6E2244C68200AA2155 /* accesoryHandle_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 95101D6D2244C68200AA2155 /* accesoryHandle_icon.png */; };
 		9575BA022243B9EC00C1504D /* TestView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9575B9FF2243B9EC00C1504D /* TestView.xib */; };
 		9575BA032243B9EC00C1504D /* TestView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9575BA002243B9EC00C1504D /* TestView.m */; };
 		95B14BFC223A2F130033BA1D /* FLEX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95B14BFB223A2F130033BA1D /* FLEX.framework */; };
@@ -141,7 +141,7 @@
 		943203FC1978F42F00E24DB3 /* AAPLCatalogTableTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAPLCatalogTableTableViewController.h; sourceTree = "<group>"; };
 		943203FD1978F42F00E24DB3 /* AAPLCatalogTableTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAPLCatalogTableTableViewController.m; sourceTree = "<group>"; };
 		94CB4D421A97183E0054A905 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
-		95101D65224488F300AA2155 /* accesoryHandle_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = accesoryHandle_icon.png; sourceTree = "<group>"; };
+		95101D6D2244C68200AA2155 /* accesoryHandle_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = accesoryHandle_icon.png; path = ../Classes/Resources/accesoryHandle_icon.png; sourceTree = "<group>"; };
 		9575B9FF2243B9EC00C1504D /* TestView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestView.xib; sourceTree = "<group>"; };
 		9575BA002243B9EC00C1504D /* TestView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestView.m; sourceTree = "<group>"; };
 		9575BA012243B9EC00C1504D /* TestView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestView.h; sourceTree = "<group>"; };
@@ -181,7 +181,7 @@
 		5356823118F3656900BAAD62 = {
 			isa = PBXGroup;
 			children = (
-				95101D65224488F300AA2155 /* accesoryHandle_icon.png */,
+				95101D6D2244C68200AA2155 /* accesoryHandle_icon.png */,
 				3EC6487218FF8A5000024205 /* ReadMe.txt */,
 				5356824318F3656900BAAD62 /* UICatalog */,
 				5356823C18F3656900BAAD62 /* Frameworks */,
@@ -385,7 +385,7 @@
 				3EC6487318FF8A5000024205 /* ReadMe.txt in Resources */,
 				9575BA022243B9EC00C1504D /* TestView.xib in Resources */,
 				5356825118F3656900BAAD62 /* Main_iPhone.storyboard in Resources */,
-				95101D662244895F00AA2155 /* accesoryHandle_icon.png in Resources */,
+				95101D6E2244C68200AA2155 /* accesoryHandle_icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

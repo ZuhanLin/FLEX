@@ -7,6 +7,7 @@
 //
 
 #import "TestView.h"
+#import <FLEX/FLEX.h>
 
 @implementation TestView
 
@@ -17,5 +18,11 @@
     // Drawing code
 }
 */
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    [self.phoneTextField resignFirstResponder];
+    [[FLEXManager sharedManager] debugResignKeyWindow];
+}
 
 @end

@@ -28,6 +28,7 @@ typedef NS_ENUM(NSUInteger, FLEXExplorerMode) {
 
 @property (nonatomic, strong) FLEXExplorerToolbar *explorerToolbar;
 @property (nonatomic, strong) UIView *accesoryToolView;
+@property (nonatomic, weak) UIView *debugViewRef;
 
 /// Tracks the currently active tool/mode
 @property (nonatomic, assign) FLEXExplorerMode currentMode;
@@ -157,6 +158,7 @@ typedef NS_ENUM(NSUInteger, FLEXExplorerMode) {
 {
     self.accesoryToolView.hidden = NO;
     [self.accesoryToolView insertSubview:debugView atIndex:0];
+    self.debugViewRef = debugView;
 }
 
 #pragma mark - Rotation
@@ -897,7 +899,34 @@ typedef NS_ENUM(NSUInteger, FLEXExplorerMode) {
 
 - (BOOL)wantsWindowToBecomeKey
 {
-    return self.previousKeyWindow != nil;
+    BOOL canBecomeKey = NO;
+        
+    // 寻找有没有类似输入框的的控件（输入框的默认canBecomFirstResponder=YES）
+    static BOOL (^searchSubViews)(UIView *view) = ^(UIView *view){
+        if (view.canBecomeFirstResponder) {
+            return YES;
+        }
+        
+        for (UIView *subView in view.subviews) {
+            if (subView.subviews.count > 0) {
+                if (searchSubViews(subView)) {
+                    return YES;
+                }
+            }
+        }
+        
+        return NO;
+    };
+    
+    if (self.debugViewRef) {
+        canBecomeKey = searchSubViews(self.debugViewRef);
+    }
+    
+    if (!canBecomeKey) {
+        canBecomeKey = self.previousKeyWindow != nil;
+    }
+    
+    return canBecomeKey;
 }
 
 - (void)toggleToolWithViewControllerProvider:(UIViewController *(^)(void))future completion:(void(^)(void))completion

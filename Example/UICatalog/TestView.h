@@ -11,6 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface TestView : UIView
+@property (weak, nonatomic) IBOutlet UITextField *phoneTextField;
 
 @end
 
