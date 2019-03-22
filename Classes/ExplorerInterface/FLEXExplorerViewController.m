@@ -112,6 +112,7 @@ typedef NS_ENUM(NSUInteger, FLEXExplorerMode) {
     
     // 添加customContentView
     self.accesoryToolView = [[UIView alloc] init];
+    self.accesoryToolView.hidden = YES;
     self.accesoryToolView.clipsToBounds = YES;
     self.accesoryToolView.backgroundColor = [UIColor redColor];
     [self.view addSubview:self.accesoryToolView];
@@ -154,6 +155,7 @@ typedef NS_ENUM(NSUInteger, FLEXExplorerMode) {
 
 - (void)showDebugView:(UIView *)debugView
 {
+    self.accesoryToolView.hidden = NO;
     [self.accesoryToolView insertSubview:debugView atIndex:0];
 }
 
