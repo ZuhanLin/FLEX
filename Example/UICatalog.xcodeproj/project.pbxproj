@@ -47,12 +47,12 @@
 		779B1EF51C0C4F25001F5E49 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 779B1EF41C0C4F25001F5E49 /* libsqlite3.dylib */; };
 		943203FE1978F42F00E24DB3 /* AAPLCatalogTableTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 943203FD1978F42F00E24DB3 /* AAPLCatalogTableTableViewController.m */; };
 		94CB4D431A97183E0054A905 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 94CB4D421A97183E0054A905 /* libz.dylib */; };
-		95101D6E2244C68200AA2155 /* accesoryHandle_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 95101D6D2244C68200AA2155 /* accesoryHandle_icon.png */; };
-		9575BA022243B9EC00C1504D /* TestView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9575B9FF2243B9EC00C1504D /* TestView.xib */; };
-		9575BA032243B9EC00C1504D /* TestView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9575BA002243B9EC00C1504D /* TestView.m */; };
-		95B14BFC223A2F130033BA1D /* FLEX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95B14BFB223A2F130033BA1D /* FLEX.framework */; };
-		95B14BFD223A2F500033BA1D /* FLEX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95B14BFB223A2F130033BA1D /* FLEX.framework */; };
-		95B14BFE223A2F500033BA1D /* FLEX.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 95B14BFB223A2F130033BA1D /* FLEX.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		950C2BE822A61D0F00200C3E /* TestView.m in Sources */ = {isa = PBXBuildFile; fileRef = 950C2BE622A61D0F00200C3E /* TestView.m */; };
+		950C2BE922A61D0F00200C3E /* TestView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 950C2BE722A61D0F00200C3E /* TestView.xib */; };
+		C34C811A22678CF5006C4D4B /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = C34C811922678CF5006C4D4B /* Person.m */; };
+		C3EF50CD22610FE200B0BE49 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3EF50CC22610FE200B0BE49 /* LaunchScreen.xib */; };
+		C3FB77E52266367F00DF4E73 /* FLEX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3FB77E42266367F00DF4E73 /* FLEX.framework */; };
+		C3FB77E6226636AA00DF4E73 /* FLEX.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C3FB77E42266367F00DF4E73 /* FLEX.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -62,7 +62,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				95B14BFE223A2F500033BA1D /* FLEX.framework in Embed Frameworks */,
+				C3FB77E6226636AA00DF4E73 /* FLEX.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -141,11 +141,13 @@
 		943203FC1978F42F00E24DB3 /* AAPLCatalogTableTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAPLCatalogTableTableViewController.h; sourceTree = "<group>"; };
 		943203FD1978F42F00E24DB3 /* AAPLCatalogTableTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAPLCatalogTableTableViewController.m; sourceTree = "<group>"; };
 		94CB4D421A97183E0054A905 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
-		95101D6D2244C68200AA2155 /* accesoryHandle_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = accesoryHandle_icon.png; path = ../Classes/Resources/accesoryHandle_icon.png; sourceTree = "<group>"; };
-		9575B9FF2243B9EC00C1504D /* TestView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestView.xib; sourceTree = "<group>"; };
-		9575BA002243B9EC00C1504D /* TestView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestView.m; sourceTree = "<group>"; };
-		9575BA012243B9EC00C1504D /* TestView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestView.h; sourceTree = "<group>"; };
-		95B14BFB223A2F130033BA1D /* FLEX.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FLEX.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		950C2BE522A61D0F00200C3E /* TestView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestView.h; sourceTree = "<group>"; };
+		950C2BE622A61D0F00200C3E /* TestView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestView.m; sourceTree = "<group>"; };
+		950C2BE722A61D0F00200C3E /* TestView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestView.xib; sourceTree = "<group>"; };
+		C34C811822678CF5006C4D4B /* Person.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
+		C34C811922678CF5006C4D4B /* Person.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
+		C3EF50CC22610FE200B0BE49 /* LaunchScreen.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
+		C3FB77E42266367F00DF4E73 /* FLEX.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FLEX.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,11 +155,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				95B14BFC223A2F130033BA1D /* FLEX.framework in Frameworks */,
+				C3FB77E52266367F00DF4E73 /* FLEX.framework in Frameworks */,
 				779B1EF51C0C4F25001F5E49 /* libsqlite3.dylib in Frameworks */,
 				94CB4D431A97183E0054A905 /* libz.dylib in Frameworks */,
 				5356824018F3656900BAAD62 /* CoreGraphics.framework in Frameworks */,
-				95B14BFD223A2F500033BA1D /* FLEX.framework in Frameworks */,
 				5356824218F3656900BAAD62 /* UIKit.framework in Frameworks */,
 				5356823E18F3656900BAAD62 /* Foundation.framework in Frameworks */,
 			);
@@ -181,7 +182,6 @@
 		5356823118F3656900BAAD62 = {
 			isa = PBXGroup;
 			children = (
-				95101D6D2244C68200AA2155 /* accesoryHandle_icon.png */,
 				3EC6487218FF8A5000024205 /* ReadMe.txt */,
 				5356824318F3656900BAAD62 /* UICatalog */,
 				5356823C18F3656900BAAD62 /* Frameworks */,
@@ -200,7 +200,7 @@
 		5356823C18F3656900BAAD62 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				95B14BFB223A2F130033BA1D /* FLEX.framework */,
+				C3FB77E42266367F00DF4E73 /* FLEX.framework */,
 				779B1EF41C0C4F25001F5E49 /* libsqlite3.dylib */,
 				94CB4D421A97183E0054A905 /* libz.dylib */,
 				5356823D18F3656900BAAD62 /* Foundation.framework */,
@@ -228,6 +228,7 @@
 				5356824518F3656900BAAD62 /* UICatalog-Info.plist */,
 				5356824B18F3656900BAAD62 /* UICatalog-Prefix.pch */,
 				53874F9718F36B1800510922 /* Localizable.strings */,
+				C3EF50CC22610FE200B0BE49 /* LaunchScreen.xib */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -300,13 +301,15 @@
 				5356824918F3656900BAAD62 /* main.m */,
 				5356827B18F3670300BAAD62 /* AAPLAppDelegate.h */,
 				5356827C18F3670300BAAD62 /* AAPLAppDelegate.m */,
-				9575BA012243B9EC00C1504D /* TestView.h */,
-				9575BA002243B9EC00C1504D /* TestView.m */,
-				9575B9FF2243B9EC00C1504D /* TestView.xib */,
+				950C2BE522A61D0F00200C3E /* TestView.h */,
+				950C2BE622A61D0F00200C3E /* TestView.m */,
+				950C2BE722A61D0F00200C3E /* TestView.xib */,
 				535682A518F3670300BAAD62 /* UIColor+AAPLApplicationSpecific.h */,
 				535682A618F3670300BAAD62 /* UIColor+AAPLApplicationSpecific.m */,
 				5356824F18F3656900BAAD62 /* Main_iPhone.storyboard */,
 				5356825218F3656900BAAD62 /* Main_iPad.storyboard */,
+				C34C811822678CF5006C4D4B /* Person.h */,
+				C34C811922678CF5006C4D4B /* Person.m */,
 			);
 			name = Application;
 			sourceTree = "<group>";
@@ -347,17 +350,17 @@
 		5356823218F3656900BAAD62 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1000;
+				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = f;
 				TargetAttributes = {
 					5356823918F3656900BAAD62 = {
-						DevelopmentTeam = T2MQ243N73;
+						DevelopmentTeam = S6N2F22V2Z;
 					};
 				};
 			};
 			buildConfigurationList = 5356823518F3656900BAAD62 /* Build configuration list for PBXProject "UICatalog" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
@@ -378,14 +381,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				950C2BE922A61D0F00200C3E /* TestView.xib in Resources */,
 				22679D5D1C741A7A002248FC /* dogs.realm in Resources */,
 				5356825418F3656900BAAD62 /* Main_iPad.storyboard in Resources */,
 				53874F9918F36B1800510922 /* Localizable.strings in Resources */,
+				C3EF50CD22610FE200B0BE49 /* LaunchScreen.xib in Resources */,
 				5356825918F3656900BAAD62 /* Images.xcassets in Resources */,
 				3EC6487318FF8A5000024205 /* ReadMe.txt in Resources */,
-				9575BA022243B9EC00C1504D /* TestView.xib in Resources */,
 				5356825118F3656900BAAD62 /* Main_iPhone.storyboard in Resources */,
-				95101D6E2244C68200AA2155 /* accesoryHandle_icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -408,8 +411,10 @@
 				535682AF18F3670300BAAD62 /* AAPLDefaultSearchBarViewController.m in Sources */,
 				535682BC18F3670300BAAD62 /* AAPLTextViewController.m in Sources */,
 				535682B418F3670300BAAD62 /* AAPLPickerViewController.m in Sources */,
+				C34C811A22678CF5006C4D4B /* Person.m in Sources */,
 				535682BE18F3670300BAAD62 /* AAPLWebViewController.m in Sources */,
 				535682BB18F3670300BAAD62 /* AAPLTextFieldViewController.m in Sources */,
+				950C2BE822A61D0F00200C3E /* TestView.m in Sources */,
 				535682BF18F3670300BAAD62 /* UIColor+AAPLApplicationSpecific.m in Sources */,
 				535682B718F3670300BAAD62 /* AAPLSliderViewController.m in Sources */,
 				535682B918F3670300BAAD62 /* AAPLStepperViewController.m in Sources */,
@@ -418,7 +423,6 @@
 				22679D581C74188D002248FC /* Dog.m in Sources */,
 				535682AD18F3670300BAAD62 /* AAPLCustomToolbarViewController.m in Sources */,
 				535682A818F3670300BAAD62 /* AAPLActivityIndicatorViewController.m in Sources */,
-				9575BA032243B9EC00C1504D /* TestView.m in Sources */,
 				535682B818F3670300BAAD62 /* AAPLSplitViewControllerDelegate.m in Sources */,
 				535682AC18F3670300BAAD62 /* AAPLCustomSearchBarViewController.m in Sources */,
 				535682A718F3670300BAAD62 /* AAPLActionSheetViewController.m in Sources */,
@@ -463,6 +467,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -516,6 +521,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -562,8 +568,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				DEVELOPMENT_TEAM = T2MQ243N73;
+				DEVELOPMENT_TEAM = S6N2F22V2Z;
 				EXCLUDED_SOURCE_FILE_NAMES = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -573,7 +578,7 @@
 				GCC_PREFIX_HEADER = "UICatalog/UICatalog-Prefix.pch";
 				INFOPLIST_FILE = "UICatalog/UICatalog-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.example.apple-samplecode.UICatalog";
+				PRODUCT_BUNDLE_IDENTIFIER = com.flipboard.FLEX.example;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -583,8 +588,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				DEVELOPMENT_TEAM = T2MQ243N73;
+				DEVELOPMENT_TEAM = S6N2F22V2Z;
 				EXCLUDED_SOURCE_FILE_NAMES = "FLEX*";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -594,7 +598,7 @@
 				GCC_PREFIX_HEADER = "UICatalog/UICatalog-Prefix.pch";
 				INFOPLIST_FILE = "UICatalog/UICatalog-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.example.apple-samplecode.UICatalog";
+				PRODUCT_BUNDLE_IDENTIFIER = com.flipboard.FLEX.example;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
