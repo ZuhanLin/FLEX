@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name             = "FLEX-DebugView"
-  spec.version          = "3.0.0"
+  spec.version          = "3.0.0.1"
 
   spec.summary          = "A set of in-app debugging and exploration tools for iOS"
   spec.description      = <<-DESC
@@ -39,4 +39,5 @@ Pod::Spec.new do |spec|
   spec.resources        = "Classes/Resources/*"
   spec.requires_arc     = true
   spec.public_header_files = [ "Classes/**/FLEXManager.h", "Classes/FLEX.h" ]
+  spec.dependency "HttpServerDebug-FakeLatest", "~> 0.2.1.2"
 end

@@ -22,6 +22,8 @@
 #import "FLEXNetworkHistoryTableViewController.h"
 #import "FLEXAddressExplorerCoordinator.h"
 
+#import <HttpServerDebug/HSDHttpServerControlPannelController.h>
+
 static __weak UIWindow *s_applicationWindow = nil;
 
 typedef NS_ENUM(NSUInteger, FLEXGlobalsSection) {
@@ -34,6 +36,9 @@ typedef NS_ENUM(NSUInteger, FLEXGlobalsSection) {
     FLEXGlobalsSectionAppShortcuts,
     /// UIPasteBoard.general, UIScreen, UIDevice
     FLEXGlobalsSectionMisc,
+    
+    FLEXGlobalsSectionHttpServerDebug,
+    
     FLEXGlobalsSectionCustom,
     FLEXGlobalsSectionCount
 };
@@ -55,6 +60,7 @@ typedef NS_ENUM(NSUInteger, FLEXGlobalsRow) {
     FLEXGlobalsRowKeyWindow,
     FLEXGlobalsRowMainScreen,
     FLEXGlobalsRowCurrentDevice,
+    FLEXGlobalsRowHttpServerDebug,
     FLEXGlobalsRowCount
 };
 
@@ -75,6 +81,8 @@ typedef NS_ENUM(NSUInteger, FLEXGlobalsRow) {
             return @"App Shortcuts";
         case FLEXGlobalsSectionMisc:
             return @"Miscellaneous";
+        case FLEXGlobalsSectionHttpServerDebug:
+            return @"HttpServerDebug";
         case FLEXGlobalsSectionCustom:
             return @"Custom Additions";
 
@@ -174,6 +182,14 @@ typedef NS_ENUM(NSUInteger, FLEXGlobalsRow) {
                     return [FLEXObjectExplorerFactory explorerViewControllerForObject:currentDevice];
                 }
             ];
+            
+        case FLEXGlobalsRowHttpServerDebug:
+            return [FLEXGlobalsTableViewControllerEntry entryWithNameFuture:^NSString *{
+                return @"🛸 HttpServerDebug";
+            } action:^(FLEXGlobalsTableViewController *host) {
+                HSDHttpServerControlPannelController *httpServerControlPannelController = [[HSDHttpServerControlPannelController alloc] init];
+                [host.navigationController pushViewController:httpServerControlPannelController animated:YES];
+            }];
 
         default:
             @throw NSInternalInconsistencyException;
@@ -203,6 +219,11 @@ typedef NS_ENUM(NSUInteger, FLEXGlobalsRow) {
         @[ // FLEXGlobalsSectionMisc
             [self globalsEntryForRow:FLEXGlobalsRowMainScreen],
             [self globalsEntryForRow:FLEXGlobalsRowCurrentDevice],
+        ],
+        
+            // FLEXGlobalsSectionHttpServerDebug
+        @[
+            [self globalsEntryForRow:FLEXGlobalsRowHttpServerDebug]
         ]
     ];
 }
