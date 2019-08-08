@@ -22,7 +22,7 @@
 #import "FLEXNetworkHistoryTableViewController.h"
 #import "FLEXAddressExplorerCoordinator.h"
 
-#import <HttpServerDebug/HSDHttpServerControlPannelController.h>
+#import "HSDHttpServerControlPannelController.h"
 
 static __weak UIWindow *s_applicationWindow = nil;
 
