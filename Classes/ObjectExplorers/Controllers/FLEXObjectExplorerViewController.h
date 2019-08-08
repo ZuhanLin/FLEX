@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Flipboard. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "FLEXTableViewController.h"
 
 typedef NS_ENUM(NSUInteger, FLEXObjectExplorerSection) {
     FLEXObjectExplorerSectionDescription,
@@ -19,7 +19,7 @@ typedef NS_ENUM(NSUInteger, FLEXObjectExplorerSection) {
     FLEXObjectExplorerSectionReferencingInstances
 };
 
-@interface FLEXObjectExplorerViewController : UITableViewController
+@interface FLEXObjectExplorerViewController : FLEXTableViewController
 
 @property (nonatomic, strong) id object;
 
@@ -48,5 +48,22 @@ typedef NS_ENUM(NSUInteger, FLEXObjectExplorerSection) {
 
 /// Subclasses can reorder/change which sections can display directly by overriding this method.
 - (NSArray *)possibleExplorerSections;
+
+/// Subclasses can override to provide a more useful description
+- (NSString *)displayedObjectDescription;
+
+@end
+
+@interface FLEXObjectExplorerViewController (Shortcuts)
+
+/// @brief Names of properties to supply as shortcuts. If this array is empty, no shortcuts are displayed.
+///
+/// @discussion Populating this array in a subclass will make FLEXObjectExplorerViewController show a custom
+/// section with row titles like "@property NSString *foo" and subtitles with their values.
+/// customSectionRowCookies will return this array. Every row in the section is drillable by default.
+///
+/// For an example on how to use the default behavior provided or to override it,
+/// see FLEXViewExplorerViewController
+- (NSArray<NSString *> *)shortcutPropertyNames;
 
 @end

@@ -49,6 +49,10 @@
 		94CB4D431A97183E0054A905 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 94CB4D421A97183E0054A905 /* libz.dylib */; };
 		950C2BE822A61D0F00200C3E /* TestView.m in Sources */ = {isa = PBXBuildFile; fileRef = 950C2BE622A61D0F00200C3E /* TestView.m */; };
 		950C2BE922A61D0F00200C3E /* TestView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 950C2BE722A61D0F00200C3E /* TestView.xib */; };
+		C34A709922B2EBB4009C2C5F /* image in Resources */ = {isa = PBXBuildFile; fileRef = C34A709522B2EBB4009C2C5F /* image */; };
+		C34A709A22B2EBB4009C2C5F /* image.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = C34A709622B2EBB4009C2C5F /* image.jpeg */; };
+		C34A709B22B2EBB4009C2C5F /* image.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C34A709722B2EBB4009C2C5F /* image.jpg */; };
+		C34A709C22B2EBB4009C2C5F /* image.png in Resources */ = {isa = PBXBuildFile; fileRef = C34A709822B2EBB4009C2C5F /* image.png */; };
 		C34C811A22678CF5006C4D4B /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = C34C811922678CF5006C4D4B /* Person.m */; };
 		C3EF50CD22610FE200B0BE49 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3EF50CC22610FE200B0BE49 /* LaunchScreen.xib */; };
 		C3FB77E52266367F00DF4E73 /* FLEX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3FB77E42266367F00DF4E73 /* FLEX.framework */; };
@@ -144,6 +148,10 @@
 		950C2BE522A61D0F00200C3E /* TestView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestView.h; sourceTree = "<group>"; };
 		950C2BE622A61D0F00200C3E /* TestView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestView.m; sourceTree = "<group>"; };
 		950C2BE722A61D0F00200C3E /* TestView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestView.xib; sourceTree = "<group>"; };
+		C34A709522B2EBB4009C2C5F /* image */ = {isa = PBXFileReference; lastKnownFileType = file; name = image; path = UICatalog/image; sourceTree = "<group>"; };
+		C34A709622B2EBB4009C2C5F /* image.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = image.jpeg; path = UICatalog/image.jpeg; sourceTree = "<group>"; };
+		C34A709722B2EBB4009C2C5F /* image.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = image.jpg; path = UICatalog/image.jpg; sourceTree = "<group>"; };
+		C34A709822B2EBB4009C2C5F /* image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = image.png; path = UICatalog/image.png; sourceTree = "<group>"; };
 		C34C811822678CF5006C4D4B /* Person.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
 		C34C811922678CF5006C4D4B /* Person.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
 		C3EF50CC22610FE200B0BE49 /* LaunchScreen.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
@@ -182,7 +190,7 @@
 		5356823118F3656900BAAD62 = {
 			isa = PBXGroup;
 			children = (
-				3EC6487218FF8A5000024205 /* ReadMe.txt */,
+				C34A709D22B2EBE0009C2C5F /* Files */,
 				5356824318F3656900BAAD62 /* UICatalog */,
 				5356823C18F3656900BAAD62 /* Frameworks */,
 				5356823B18F3656900BAAD62 /* Products */,
@@ -323,6 +331,18 @@
 			name = "FLEX Integration";
 			sourceTree = "<group>";
 		};
+		C34A709D22B2EBE0009C2C5F /* Files */ = {
+			isa = PBXGroup;
+			children = (
+				C34A709522B2EBB4009C2C5F /* image */,
+				C34A709622B2EBB4009C2C5F /* image.jpeg */,
+				C34A709722B2EBB4009C2C5F /* image.jpg */,
+				C34A709822B2EBB4009C2C5F /* image.png */,
+				3EC6487218FF8A5000024205 /* ReadMe.txt */,
+			);
+			name = Files;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -382,6 +402,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				950C2BE922A61D0F00200C3E /* TestView.xib in Resources */,
+				C34A709922B2EBB4009C2C5F /* image in Resources */,
+				C34A709A22B2EBB4009C2C5F /* image.jpeg in Resources */,
+				C34A709B22B2EBB4009C2C5F /* image.jpg in Resources */,
+				C34A709C22B2EBB4009C2C5F /* image.png in Resources */,
 				22679D5D1C741A7A002248FC /* dogs.realm in Resources */,
 				5356825418F3656900BAAD62 /* Main_iPad.storyboard in Resources */,
 				53874F9918F36B1800510922 /* Localizable.strings in Resources */,

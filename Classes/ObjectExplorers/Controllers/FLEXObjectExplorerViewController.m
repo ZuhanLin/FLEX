@@ -51,7 +51,7 @@ typedef NS_ENUM(NSUInteger, FLEXMetadataKind) {
 @implementation FLEXMethodBox
 @end
 
-@interface FLEXObjectExplorerViewController () <UISearchBarDelegate>
+@interface FLEXObjectExplorerViewController ()
 
 @property (nonatomic, strong) NSArray<FLEXPropertyBox *> *properties;
 @property (nonatomic, strong) NSArray<FLEXPropertyBox *> *propertiesWithParent;
@@ -83,7 +83,6 @@ typedef NS_ENUM(NSUInteger, FLEXMetadataKind) {
 @property (nonatomic, strong) NSArray *cachedCustomSectionRowCookies;
 @property (nonatomic, strong) NSIndexSet *customSectionVisibleIndexes;
 
-@property (nonatomic, strong) UISearchBar *searchBar;
 @property (nonatomic, strong) NSString *filterText;
 @property (nonatomic, assign) FLEXObjectExplorerScope scope;
 
@@ -110,12 +109,10 @@ typedef NS_ENUM(NSUInteger, FLEXMetadataKind) {
 {
     [super viewDidLoad];
     
-    self.searchBar = [[UISearchBar alloc] init];
-    self.searchBar.placeholder = [FLEXUtility searchBarPlaceholderText];
-    self.searchBar.delegate = self;
-    self.searchBar.showsScopeBar = YES;
+    self.showsSearchBar = YES;
+    self.searchBarDebounceInterval = kFLEXDebounceInstant;
+    self.searchController.searchBar.showsScopeBar = YES;
     [self refreshScopeTitles];
-    self.tableView.tableHeaderView = self.searchBar;
     
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(refreshControlDidRefresh:) forControlEvents:UIControlEventValueChanged];
@@ -132,7 +129,7 @@ typedef NS_ENUM(NSUInteger, FLEXMetadataKind) {
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    [self.searchBar endEditing:YES];
+    [self.searchController.searchBar endEditing:YES];
 }
 
 - (void)refreshControlDidRefresh:(id)sender
@@ -146,7 +143,7 @@ typedef NS_ENUM(NSUInteger, FLEXMetadataKind) {
 
 - (void)refreshScopeTitles
 {
-    if (!self.searchBar) return;
+    if (!self.searchController.searchBar) return;
 
     Class parent = [self.object superclass];
     Class parentSuper = [parent superclass];
@@ -162,25 +159,20 @@ typedef NS_ENUM(NSUInteger, FLEXMetadataKind) {
         [scopes addObject:@"NSObject"];
     }
 
-    self.searchBar.scopeButtonTitles = scopes;
-    [self.searchBar sizeToFit];
+    self.searchController.searchBar.scopeButtonTitles = scopes;
     [self updateTableData];
 }
 
-- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+- (void)updateSearchResults:(NSString *)newText;
 {
-    self.filterText = searchText;
-}
-
-- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
-{
-    [searchBar resignFirstResponder];
-}
-
-- (void)searchBar:(UISearchBar *)searchBar selectedScopeButtonIndexDidChange:(NSInteger)selectedScope
-{
-    self.scope = selectedScope;
-    [self updateDisplayedData];
+    NSInteger newScope = self.searchController.searchBar.selectedScopeButtonIndex;
+    BOOL delta = self.scope != newScope || ![self.filterText isEqualToString:newText];
+    
+    if (delta) {
+        self.scope = newScope;
+        self.filterText = newText;
+        [self updateDisplayedData];
+    }
 }
 
 - (NSArray *)metadata:(FLEXMetadataKind)metadataKind forScope:(FLEXObjectExplorerScope)scope
@@ -247,15 +239,6 @@ typedef NS_ENUM(NSUInteger, FLEXMetadataKind) {
     self.title = [[object class] description];
     [self refreshScopeTitles];
 }
-
-- (void)setFilterText:(NSString *)filterText
-{
-    if (_filterText != filterText || ![_filterText isEqual:filterText]) {
-        _filterText = filterText;
-        [self updateDisplayedData];
-    }
-}
-
 
 #pragma mark - Reloading
 
@@ -576,6 +559,11 @@ typedef NS_ENUM(NSUInteger, FLEXMetadataKind) {
 {
     FLEXMethodBox *classMethodBox = self.filteredClassMethods[index];
     return [FLEXRuntimeUtility prettyNameForMethod:classMethodBox.method isClassMethod:YES];
+}
+
+- (objc_property_t)viewPropertyForName:(NSString *)propertyName
+{
+    return class_getProperty([self.object class], propertyName.UTF8String);
 }
 
 
@@ -1121,31 +1109,71 @@ typedef NS_ENUM(NSUInteger, FLEXMetadataKind) {
 
 - (NSString *)customSectionTitle
 {
-    return nil;
+    return self.shortcutPropertyNames.count ? @"Shortcuts" : nil;
 }
 
 - (NSArray *)customSectionRowCookies
 {
-    return nil;
+    return self.shortcutPropertyNames;
 }
 
 - (NSString *)customSectionTitleForRowCookie:(id)rowCookie
 {
+    if ([rowCookie isKindOfClass:[NSString class]]) {
+        objc_property_t property = [self viewPropertyForName:rowCookie];
+        if (property) {
+            NSString *prettyPropertyName = [FLEXRuntimeUtility prettyNameForProperty:property];
+            // Since we're outside of the "properties" section, prepend @property for clarity.
+            return [@"@property " stringByAppendingString:prettyPropertyName];
+        } else if ([rowCookie respondsToSelector:@selector(description)]) {
+            return [@"No property found for object: " stringByAppendingString:[rowCookie description]];
+        } else {
+            NSString *cls = NSStringFromClass([rowCookie class]);
+            return [@"No property found for object of class " stringByAppendingString:cls];
+        }
+    }
+
     return nil;
 }
 
 - (NSString *)customSectionSubtitleForRowCookie:(id)rowCookie
 {
+    if ([rowCookie isKindOfClass:[NSString class]]) {
+        objc_property_t property = [self viewPropertyForName:rowCookie];
+        if (property) {
+            id value = [FLEXRuntimeUtility valueForProperty:property onObject:self.object];
+            return [FLEXRuntimeUtility descriptionForIvarOrPropertyValue:value];
+        } else {
+            return nil;
+        }
+    }
+
     return nil;
 }
 
 - (BOOL)customSectionCanDrillIntoRowWithCookie:(id)rowCookie
 {
-    return NO;
+    return YES;
 }
 
 - (UIViewController *)customSectionDrillInViewControllerForRowCookie:(id)rowCookie
 {
+    if ([rowCookie isKindOfClass:[NSString class]]) {
+        objc_property_t property = [self viewPropertyForName:rowCookie];
+        if (property) {
+            id currentValue = [FLEXRuntimeUtility valueForProperty:property onObject:self.object];
+            if ([FLEXPropertyEditorViewController canEditProperty:property onObject:self.object currentValue:currentValue]) {
+                return [[FLEXPropertyEditorViewController alloc] initWithTarget:self.object property:property];
+            } else {
+                return [FLEXObjectExplorerFactory explorerViewControllerForObject:currentValue];
+            }
+        } else {
+            [NSException raise:NSInternalInconsistencyException
+                        format:@"Cannot drill into row for cookie: %@", rowCookie];
+            return nil;
+        }
+    }
+
     return nil;
 }
 
@@ -1168,5 +1196,12 @@ typedef NS_ENUM(NSUInteger, FLEXMetadataKind) {
 {
     return YES;
 }
+
+@end
+
+
+@implementation FLEXObjectExplorerViewController (Shortcuts)
+
+- (NSArray<NSString *> *)shortcutPropertyNames { return @[]; }
 
 @end

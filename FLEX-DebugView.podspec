@@ -34,8 +34,7 @@ Pod::Spec.new do |spec|
   spec.module_name      = "FLEX"
   spec.source           = { :git => "https://github.com/ZuhanLin/FLEX.git", :tag => "#{spec.version}" }
   spec.source_files     = "Classes/**/*.{h,m,mm}"
-  spec.frameworks       = [ "Foundation", "UIKit", "CoreGraphics", "ImageIO", "QuartzCore" ]
-
+  spec.frameworks       = [ "Foundation", "UIKit", "CoreGraphics", "ImageIO", "QuartzCore", "WebKit" ]
   spec.libraries        = [ "z", "sqlite3" ]
   spec.resources        = "Classes/Resources/*"
   spec.requires_arc     = true
