@@ -204,6 +204,7 @@ typedef NS_ENUM(NSUInteger, FLEXGlobalsRow) {
             [self globalsEntryForRow:FLEXGlobalsRowSystemLog],
             [self globalsEntryForRow:FLEXGlobalsRowLiveObjects],
             [self globalsEntryForRow:FLEXGlobalsRowAddressInspector],
+            [self globalsEntryForRow:FLEXGlobalsRowFileBrowser],
             [self globalsEntryForRow:FLEXGlobalsRowSystemLibraries],
             [self globalsEntryForRow:FLEXGlobalsRowAppClasses],
         ],
