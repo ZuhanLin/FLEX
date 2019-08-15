@@ -789,7 +789,7 @@ typedef NS_ENUM(NSUInteger, FLEXExplorerMode) {
     
     CGPoint pointInLocalCoordinates = [self.view convertPoint:pointInWindowCoordinates fromView:nil];
     
-    if (CGRectContainsPoint(self.accesoryToolView.frame, pointInLocalCoordinates)) {
+    if (CGRectContainsPoint(self.accesoryToolView.frame, pointInLocalCoordinates) && self.accesoryToolView.hidden == NO) {
         shouldReceiveTouch = YES;
     }
     
