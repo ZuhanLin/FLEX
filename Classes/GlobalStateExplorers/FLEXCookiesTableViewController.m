@@ -12,7 +12,7 @@
 
 @interface FLEXCookiesTableViewController ()
 
-@property (nonatomic, strong) NSArray<NSHTTPCookie *> *cookies;
+@property (nonatomic) NSArray<NSHTTPCookie *> *cookies;
 
 @end
 
@@ -25,7 +25,7 @@
         self.title = @"Cookies";
 
         NSSortDescriptor *nameSortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES selector:@selector(caseInsensitiveCompare:)];
-        _cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage].cookies sortedArrayUsingDescriptors:@[nameSortDescriptor]];
+        _cookies = [NSHTTPCookieStorage.sharedHTTPCookieStorage.cookies sortedArrayUsingDescriptors:@[nameSortDescriptor]];
     }
     
     return self;
@@ -50,7 +50,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
         cell.textLabel.font = [FLEXUtility defaultTableViewCellLabelFont];
         cell.detailTextLabel.font = [FLEXUtility defaultTableViewCellLabelFont];
-        cell.detailTextLabel.textColor = [UIColor grayColor];
+        cell.detailTextLabel.textColor = UIColor.grayColor;
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     
@@ -68,13 +68,13 @@
     [self.navigationController pushViewController:cookieViewController animated:YES];
 }
 
-#pragma mark - FLEXGlobalsTableViewControllerEntry
+#pragma mark - FLEXGlobalsEntry
 
-+ (NSString *)globalsEntryTitle {
++ (NSString *)globalsEntryTitle:(FLEXGlobalsRow)row {
     return @"🍪  Cookies";
 }
 
-+ (instancetype)globalsEntryViewController {
++ (UIViewController *)globalsEntryViewController:(FLEXGlobalsRow)row {
     return [self new];
 }
 

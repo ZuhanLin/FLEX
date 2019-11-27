@@ -109,8 +109,8 @@ const NSUInteger kProgressViewControllerMaxProgress = 100;
 - (void)configureTintedProgressView {
     self.tintedProgressView.progressViewStyle = UIProgressViewStyleDefault;
 
-    self.tintedProgressView.trackTintColor = [UIColor aapl_applicationBlueColor];
-    self.tintedProgressView.progressTintColor = [UIColor aapl_applicationPurpleColor];
+    self.tintedProgressView.trackTintColor = UIColor.aapl_applicationBlueColor;
+    self.tintedProgressView.progressTintColor = UIColor.aapl_applicationPurpleColor;
 }
 
 
@@ -118,7 +118,7 @@ const NSUInteger kProgressViewControllerMaxProgress = 100;
 
 - (void)simulateProgress {
     // In this example we will simulate progress with a "sleep operation".
-    self.operationQueue = [[NSOperationQueue alloc] init];
+    self.operationQueue = [NSOperationQueue new];
     
     for (NSUInteger count = 0; count < kProgressViewControllerMaxProgress; count++) {
         [self.operationQueue addOperationWithBlock:^{

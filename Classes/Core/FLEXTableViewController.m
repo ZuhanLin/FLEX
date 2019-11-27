@@ -7,6 +7,10 @@
 //
 
 #import "FLEXTableViewController.h"
+#import "FLEXScopeCarousel.h"
+#import "FLEXTableView.h"
+#import "FLEXUtility.h"
+#import <objc/runtime.h>
 
 @interface Block : NSObject
 - (void)invoke;
@@ -19,6 +23,7 @@ CGFloat const kFLEXDebounceForExpensiveIO = 0.5;
 
 @interface FLEXTableViewController ()
 @property (nonatomic) NSTimer *debounceTimer;
+
 @end
 
 @implementation FLEXTableViewController
@@ -69,8 +74,40 @@ CGFloat const kFLEXDebounceForExpensiveIO = 0.5;
     }
 }
 
+- (void)setShowsCarousel:(BOOL)showsCarousel {
+    if (_showsCarousel == showsCarousel) return;
+    _showsCarousel = showsCarousel;
+
+    _carousel = ({
+        __weak __typeof(self) weakSelf = self;
+
+        FLEXScopeCarousel *carousel = [FLEXScopeCarousel new];
+        carousel.selectedIndexChangedAction = ^(NSInteger idx) {
+            __typeof(self) self = weakSelf;
+            [self updateSearchResults:self.searchText];
+        };
+
+        self.tableView.tableHeaderView = carousel;
+        [self.tableView layoutIfNeeded];
+        // UITableView won't update the header size unless you reset the header view
+        [carousel registerBlockForDynamicTypeChanges:^(FLEXScopeCarousel *carousel) {
+            __typeof(self) self = weakSelf;
+            self.tableView.tableHeaderView = carousel;
+            [self.tableView layoutIfNeeded];
+        }];
+
+        carousel;
+    });
+}
+
 - (NSInteger)selectedScope {
-    return self.searchController.searchBar.selectedScopeButtonIndex;
+    if (self.searchController.searchBar.showsScopeBar) {
+        return self.searchController.searchBar.selectedScopeButtonIndex;
+    } else if (self.showsCarousel) {
+        return self.carousel.selectedIndex;
+    } else {
+        return NSNotFound;
+    }
 }
 
 - (NSString *)searchText {
@@ -79,7 +116,7 @@ CGFloat const kFLEXDebounceForExpensiveIO = 0.5;
 
 - (void)setAutomaticallyShowsSearchBarCancelButton:(BOOL)autoShowCancel {
 #if FLEX_AT_LEAST_IOS13_SDK
-    if (@available(iOS 13, *)) {
+    if (@available(iOS 13.0, *)) {
         self.searchController.automaticallyShowsCancelButton = autoShowCancel;
     } else {
         _automaticallyShowsSearchBarCancelButton = autoShowCancel;
@@ -91,7 +128,7 @@ CGFloat const kFLEXDebounceForExpensiveIO = 0.5;
 
 - (void)updateSearchResults:(NSString *)newText { }
 
-- (void)onBackgroundQueue:(NSArray *(^)())backgroundBlock thenOnMainQueue:(void(^)(NSArray *))mainBlock {
+- (void)onBackgroundQueue:(NSArray *(^)(void))backgroundBlock thenOnMainQueue:(void(^)(NSArray *))mainBlock {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         NSArray *items = backgroundBlock();
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -111,25 +148,23 @@ CGFloat const kFLEXDebounceForExpensiveIO = 0.5;
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    // Make the search bar re-appear instead of hiding
-    if (@available(iOS 11.0, *)) {
+    // When going back, make the search bar reappear instead of hiding
+    if (@available(iOS 11.0, *)) if (self.pinSearchBar) {
         self.navigationItem.hidesSearchBarWhenScrolling = NO;
     }
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-    
-    // Allow scrolling to collapse the search bar,
-    // only if we don't want it pinned
-    if (@available(iOS 11.0, *)) {
-        self.navigationItem.hidesSearchBarWhenScrolling = !self.pinSearchBar;
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+
+    if (self.searchController.active) {
+        self.searchController.active = NO;
     }
 }
 
 #pragma mark - Private
 
-- (void)debounce:(void(^)())block {
+- (void)debounce:(void(^)(void))block {
     [self.debounceTimer invalidate];
     
     self.debounceTimer = [NSTimer

@@ -7,7 +7,6 @@
 //
 
 #import "FLEXFileBrowserTableViewController.h"
-#import "FLEXFileBrowserFileOperationController.h"
 #import "FLEXUtility.h"
 #import "FLEXWebViewController.h"
 #import "FLEXImagePreviewViewController.h"
@@ -18,16 +17,15 @@
 @interface FLEXFileBrowserTableViewCell : UITableViewCell
 @end
 
-@interface FLEXFileBrowserTableViewController () <FLEXFileBrowserFileOperationControllerDelegate, FLEXFileBrowserSearchOperationDelegate>
+@interface FLEXFileBrowserTableViewController () <FLEXFileBrowserSearchOperationDelegate>
 
 @property (nonatomic, copy) NSString *path;
 @property (nonatomic, copy) NSArray<NSString *> *childPaths;
-@property (nonatomic, strong) NSArray<NSString *> *searchPaths;
-@property (nonatomic, strong) NSNumber *recursiveSize;
-@property (nonatomic, strong) NSNumber *searchPathsSize;
+@property (nonatomic) NSArray<NSString *> *searchPaths;
+@property (nonatomic) NSNumber *recursiveSize;
+@property (nonatomic) NSNumber *searchPathsSize;
 @property (nonatomic) NSOperationQueue *operationQueue;
-@property (nonatomic, strong) UIDocumentInteractionController *documentController;
-@property (nonatomic, strong) id<FLEXFileBrowserFileOperationController> fileOperationController;
+@property (nonatomic) UIDocumentInteractionController *documentController;
 
 @end
 
@@ -50,7 +48,7 @@
         //computing path size
         FLEXFileBrowserTableViewController *__weak weakSelf = self;
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            NSFileManager *fileManager = [NSFileManager defaultManager];
+            NSFileManager *fileManager = NSFileManager.defaultManager;
             NSDictionary<NSString *, id> *attributes = [fileManager attributesOfItemAtPath:path error:NULL];
             uint64_t totalSize = [attributes fileSize];
 
@@ -86,20 +84,22 @@
     self.searchBarDebounceInterval = kFLEXDebounceForAsyncSearch;
 }
 
-#pragma mark - FLEXGlobalsTableViewControllerEntry
+#pragma mark - FLEXGlobalsEntry
 
-+ (NSString *)globalsEntryTitle {
-    return @"📁  File Browser";
++ (NSString *)globalsEntryTitle:(FLEXGlobalsRow)row {
+    switch (row) {
+        case FLEXGlobalsRowBrowseBundle: return @"📁  Browse Bundle Directory";
+        case FLEXGlobalsRowBrowseContainer: return @"📁  Browse Container Directory";
+        default: return nil;
+    }
 }
 
-+ (instancetype)globalsEntryViewController {
-    return [self new];
-}
-
-#pragma mark - Misc
-
-- (void)alert:(NSString *)title message:(NSString *)message {
-    [[[UIAlertView alloc] initWithTitle:title message:message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
++ (UIViewController *)globalsEntryViewController:(FLEXGlobalsRow)row {
+    switch (row) {
+        case FLEXGlobalsRowBrowseBundle: return [[self alloc] initWithPath:NSBundle.mainBundle.bundlePath];
+        case FLEXGlobalsRowBrowseContainer: return [[self alloc] initWithPath:NSHomeDirectory()];
+        default: return [self new];
+    }
 }
 
 #pragma mark - FLEXFileBrowserSearchOperationDelegate
@@ -136,7 +136,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.searchController.isActive ? [self.searchPaths count] : [self.childPaths count];
+    return self.searchController.isActive ? self.searchPaths.count : self.childPaths.count;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
@@ -152,17 +152,17 @@
         sizeString = [NSByteCountFormatter stringFromByteCount:[currentSize longLongValue] countStyle:NSByteCountFormatterCountStyleFile];
     }
 
-    return [NSString stringWithFormat:@"%lu files (%@)", (unsigned long)[currentPaths count], sizeString];
+    return [NSString stringWithFormat:@"%lu files (%@)", (unsigned long)currentPaths.count, sizeString];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *fullPath = [self filePathAtIndexPath:indexPath];
-    NSDictionary<NSString *, id> *attributes = [[NSFileManager defaultManager] attributesOfItemAtPath:fullPath error:NULL];
+    NSDictionary<NSString *, id> *attributes = [NSFileManager.defaultManager attributesOfItemAtPath:fullPath error:NULL];
     BOOL isDirectory = [attributes.fileType isEqual:NSFileTypeDirectory];
     NSString *subtitle = nil;
     if (isDirectory) {
-        NSUInteger count = [[[NSFileManager defaultManager] contentsOfDirectoryAtPath:fullPath error:NULL] count];
+        NSUInteger count = [NSFileManager.defaultManager contentsOfDirectoryAtPath:fullPath error:NULL].count;
         subtitle = [NSString stringWithFormat:@"%lu item%@", (unsigned long)count, (count == 1 ? @"" : @"s")];
     } else {
         NSString *sizeString = [NSByteCountFormatter stringFromByteCount:attributes.fileSize countStyle:NSByteCountFormatterCountStyleFile];
@@ -181,7 +181,7 @@
         cell = [[FLEXFileBrowserTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
         cell.textLabel.font = [FLEXUtility defaultTableViewCellLabelFont];
         cell.detailTextLabel.font = [FLEXUtility defaultTableViewCellLabelFont];
-        cell.detailTextLabel.textColor = [UIColor grayColor];
+        cell.detailTextLabel.textColor = UIColor.grayColor;
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     NSString *cellTitle = [fullPath lastPathComponent];
@@ -205,12 +205,12 @@
     NSString *pathExtension = subpath.pathExtension;
 
     BOOL isDirectory = NO;
-    BOOL stillExists = [[NSFileManager defaultManager] fileExistsAtPath:fullPath isDirectory:&isDirectory];
+    BOOL stillExists = [NSFileManager.defaultManager fileExistsAtPath:fullPath isDirectory:&isDirectory];
     UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
     UIImage *image = cell.imageView.image;
 
     if (!stillExists) {
-        [self alert:@"File Not Found" message:@"The file at the specified path no longer exists."];
+        [FLEXAlert showAlert:@"File Not Found" message:@"The file at the specified path no longer exists." from:self];
         [self reloadDisplayedPaths];
         return;
     }
@@ -223,7 +223,7 @@
     } else {
         NSData *fileData = [NSData dataWithContentsOfFile:fullPath];
         if (!fileData.length) {
-            [self alert:@"Empty File" message:@"No data returned from the file."];
+            [FLEXAlert showAlert:@"Empty File" message:@"No data returned from the file." from:self];
             return;
         }
 
@@ -285,7 +285,7 @@
     UIMenuItem *copyPath = [[UIMenuItem alloc] initWithTitle:@"Copy Path" action:@selector(fileBrowserCopyPath:)];
     UIMenuItem *share = [[UIMenuItem alloc] initWithTitle:@"Share" action:@selector(fileBrowserShare:)];
 
-    [UIMenuController sharedMenuController].menuItems = @[rename, delete, copyPath, share];
+    UIMenuController.sharedMenuController.menuItems = @[rename, delete, copyPath, share];
 
     return YES;
 }
@@ -305,12 +305,44 @@
     // Since our actions are outside of that protocol, we need to manually handle the action forwarding from the cells.
 }
 
-#pragma mark - FLEXFileBrowserFileOperationControllerDelegate
+#if FLEX_AT_LEAST_IOS13_SDK
 
-- (void)fileOperationControllerDidDismiss:(id<FLEXFileBrowserFileOperationController>)controller
+- (UIContextMenuConfiguration *)tableView:(UITableView *)tableView contextMenuConfigurationForRowAtIndexPath:(NSIndexPath *)indexPath point:(CGPoint)point __IOS_AVAILABLE(13.0)
 {
-    [self reloadDisplayedPaths];
+    __weak typeof(self) weakSelf = self;
+    return [UIContextMenuConfiguration configurationWithIdentifier:nil
+                                                   previewProvider:nil
+                                                    actionProvider:^UIMenu * _Nullable(NSArray<UIMenuElement *> * _Nonnull suggestedActions) {
+        UITableViewCell * const cell = [tableView cellForRowAtIndexPath:indexPath];
+        UIAction *rename = [UIAction actionWithTitle:@"Rename"
+                                               image:nil
+                                          identifier:@"Rename"
+                                             handler:^(__kindof UIAction * _Nonnull action) {
+            [weakSelf fileBrowserRename:cell];
+        }];
+        UIAction *delete = [UIAction actionWithTitle:@"Delete"
+                                               image:nil
+                                          identifier:@"Delete"
+                                             handler:^(__kindof UIAction * _Nonnull action) {
+            [weakSelf fileBrowserDelete:cell];
+        }];
+        UIAction *copyPath = [UIAction actionWithTitle:@"Copy Path"
+                                                 image:nil
+                                            identifier:@"Copy Path"
+                                               handler:^(__kindof UIAction * _Nonnull action) {
+            [weakSelf fileBrowserCopyPath:cell];
+        }];
+        UIAction *share = [UIAction actionWithTitle:@"Share"
+                                              image:nil
+                                         identifier:@"Share"
+                                            handler:^(__kindof UIAction * _Nonnull action) {
+            [weakSelf fileBrowserShare:cell];
+        }];
+        return [UIMenu menuWithTitle:@"Manage File" image:nil identifier:@"Manage File" options:UIMenuOptionsDisplayInline children:@[rename, delete, copyPath, share]];
+    }];
 }
+
+#endif
 
 - (void)openFileController:(NSString *)fullPath
 {
@@ -326,9 +358,25 @@
     NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
     NSString *fullPath = [self filePathAtIndexPath:indexPath];
 
-    self.fileOperationController = [[FLEXFileBrowserFileRenameOperationController alloc] initWithPath:fullPath];
-    self.fileOperationController.delegate = self;
-    [self.fileOperationController show];
+    BOOL stillExists = [NSFileManager.defaultManager fileExistsAtPath:self.path isDirectory:NULL];
+    if (stillExists) {
+        [FLEXAlert makeAlert:^(FLEXAlert *make) {
+            make.title([NSString stringWithFormat:@"Rename %@?", fullPath.lastPathComponent]);
+            make.configuredTextField(^(UITextField *textField) {
+                textField.placeholder = @"New file name";
+                textField.text = fullPath.lastPathComponent;
+            });
+            make.button(@"Rename").handler(^(NSArray<NSString *> *strings) {
+                NSString *newFileName = strings.firstObject;
+                NSString *newPath = [fullPath.stringByDeletingLastPathComponent stringByAppendingPathComponent:newFileName];
+                [NSFileManager.defaultManager moveItemAtPath:fullPath toPath:newPath error:NULL];
+                [self reloadDisplayedPaths];
+            });
+            make.button(@"Cancel").cancelStyle();
+        } showFrom:self];
+    } else {
+        [FLEXAlert showAlert:@"File Removed" message:@"The file at the specified path no longer exists." from:self];
+    }
 }
 
 - (void)fileBrowserDelete:(UITableViewCell *)sender
@@ -336,16 +384,31 @@
     NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
     NSString *fullPath = [self filePathAtIndexPath:indexPath];
 
-    self.fileOperationController = [[FLEXFileBrowserFileDeleteOperationController alloc] initWithPath:fullPath];
-    self.fileOperationController.delegate = self;
-    [self.fileOperationController show];
+    BOOL isDirectory = NO;
+    BOOL stillExists = [NSFileManager.defaultManager fileExistsAtPath:fullPath isDirectory:&isDirectory];
+    if (stillExists) {
+        [FLEXAlert makeAlert:^(FLEXAlert *make) {
+            make.title(@"Confirm Deletion");
+            make.message([NSString stringWithFormat:
+                @"The %@ '%@' will be deleted. This operation cannot be undone",
+                (isDirectory ? @"directory" : @"file"), fullPath.lastPathComponent
+            ]);
+            make.button(@"Delete").destructiveStyle().handler(^(NSArray<NSString *> *strings) {
+                [NSFileManager.defaultManager removeItemAtPath:fullPath error:NULL];
+                [self reloadDisplayedPaths];
+            });
+            make.button(@"Cancel").cancelStyle();
+        } showFrom:self];
+    } else {
+        [FLEXAlert showAlert:@"File Removed" message:@"The file at the specified path no longer exists." from:self];
+    }
 }
 
 - (void)fileBrowserCopyPath:(UITableViewCell *)sender
 {
     NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
     NSString *fullPath = [self filePathAtIndexPath:indexPath];
-    [UIPasteboard generalPasteboard].string = fullPath;
+    UIPasteboard.generalPasteboard.string = fullPath;
 }
 
 - (void)fileBrowserShare:(UITableViewCell *)sender
@@ -355,7 +418,7 @@
     NSURL *filePath = [NSURL fileURLWithPath:pathString];
 
     BOOL isDirectory = NO;
-    [[NSFileManager defaultManager] fileExistsAtPath:pathString isDirectory:&isDirectory];
+    [NSFileManager.defaultManager fileExistsAtPath:pathString isDirectory:&isDirectory];
 
     if (isDirectory) {
         // UIDocumentInteractionController for folders
@@ -380,7 +443,7 @@
 - (void)reloadCurrentPath
 {
     NSMutableArray<NSString *> *childPaths = [NSMutableArray array];
-    NSArray<NSString *> *subpaths = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:self.path error:NULL];
+    NSArray<NSString *> *subpaths = [NSFileManager.defaultManager contentsOfDirectoryAtPath:self.path error:NULL];
     for (NSString *subpath in subpaths) {
         [childPaths addObject:[self.path stringByAppendingPathComponent:subpath]];
     }
@@ -412,7 +475,7 @@
 - (void)forwardAction:(SEL)action withSender:(id)sender
 {
     id target = [self.nextResponder targetForAction:action withSender:sender];
-    [[UIApplication sharedApplication] sendAction:action to:target from:self forEvent:nil];
+    [UIApplication.sharedApplication sendAction:action to:target from:self forEvent:nil];
 }
 
 - (void)fileBrowserRename:(UIMenuController *)sender

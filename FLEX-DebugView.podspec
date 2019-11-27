@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name             = "FLEX-DebugView"
-  spec.version          = "3.1.0.1"
+  spec.version          = "3.1.0.3"
 
   spec.summary          = "A set of in-app debugging and exploration tools for iOS"
   spec.description      = <<-DESC
@@ -30,11 +30,12 @@ Pod::Spec.new do |spec|
   spec.license          = { :type => "BSD", :file => "LICENSE" }
   spec.author           = { "Zuhan Lin" => "767678362@qq.com" }
   spec.social_media_url = "https://github.com/ZuhanLin/FLEX"
-  spec.platform         = :ios, "8.0"
+  spec.platform         = :ios, "9.0"
   spec.module_name      = "FLEX"
   spec.source           = { :git => "https://github.com/ZuhanLin/FLEX.git", :tag => "#{spec.version}" }
+
   spec.source_files     = "Classes/**/*.{h,m,mm}"
-  spec.frameworks       = [ "Foundation", "UIKit", "CoreGraphics", "ImageIO", "QuartzCore", "WebKit" ]
+  spec.frameworks       = [ "Foundation", "UIKit", "CoreGraphics", "ImageIO", "QuartzCore", "WebKit", "Security" ]
   spec.libraries        = [ "z", "sqlite3" ]
   spec.resources        = "Classes/Resources/*"
   spec.requires_arc     = true

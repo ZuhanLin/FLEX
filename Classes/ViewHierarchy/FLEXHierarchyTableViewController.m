@@ -19,11 +19,11 @@ static const NSInteger kFLEXHierarchyScopeFullHierarchyIndex = 1;
 
 @interface FLEXHierarchyTableViewController ()
 
-@property (nonatomic, strong) NSArray<UIView *> *allViews;
-@property (nonatomic, strong) NSDictionary<NSValue *, NSNumber *> *depthsForViews;
-@property (nonatomic, strong) NSArray<UIView *> *viewsAtTap;
-@property (nonatomic, strong) UIView *selectedView;
-@property (nonatomic, strong) NSArray<UIView *> *displayedViews;
+@property (nonatomic) NSArray<UIView *> *allViews;
+@property (nonatomic) NSDictionary<NSValue *, NSNumber *> *depthsForViews;
+@property (nonatomic) NSArray<UIView *> *viewsAtTap;
+@property (nonatomic) UIView *selectedView;
+@property (nonatomic) NSArray<UIView *> *displayedViews;
 
 @end
 
@@ -121,7 +121,7 @@ static const NSInteger kFLEXHierarchyScopeFullHierarchyIndex = 1;
 
 - (BOOL)showScopeBar
 {
-    return [self.viewsAtTap count] > 0;
+    return self.viewsAtTap.count > 0;
 }
 
 - (void)updateSearchResults:(NSString *)newText
@@ -143,7 +143,7 @@ static const NSInteger kFLEXHierarchyScopeFullHierarchyIndex = 1;
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.displayedViews count];
+    return self.displayedViews.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -177,7 +177,7 @@ static const NSInteger kFLEXHierarchyScopeFullHierarchyIndex = 1;
     });
     
     UIColor *viewColour = view.backgroundColor;
-    if (!viewColour || [viewColour isEqual:[UIColor clearColor]]) {
+    if (!viewColour || [viewColour isEqual:UIColor.clearColor]) {
         cell.viewBackgroundColorView.backgroundColor = checkerPatternColour;
     } else {
         cell.viewBackgroundColorView.backgroundColor = viewColour;

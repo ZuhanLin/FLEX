@@ -37,17 +37,17 @@
 - (void)registerViewControllerBasedOption
 {
     // create UIViewController subclass
-    UIViewController *viewController = [[UIViewController alloc] init];
+    UIViewController *viewController = [UIViewController new];
 
     // fill it with some stuff
-    UILabel *infoLabel = [[UILabel alloc] init];
+    UILabel *infoLabel = [UILabel new];
     infoLabel.translatesAutoresizingMaskIntoConstraints = NO;
     infoLabel.text = @"Add switches, notes or whatever you wish to provide your testers with superpowers!";
     infoLabel.numberOfLines = 0;
     infoLabel.textAlignment = NSTextAlignmentCenter;
 
     UIView *view = viewController.view;
-    view.backgroundColor = [UIColor whiteColor];
+    view.backgroundColor = UIColor.whiteColor;
     [view addSubview:infoLabel];
 
     [view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[infoLabel]-0-|"

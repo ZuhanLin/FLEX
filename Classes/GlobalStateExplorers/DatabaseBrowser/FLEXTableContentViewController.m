@@ -13,7 +13,7 @@
 
 @interface FLEXTableContentViewController ()<FLEXMultiColumnTableViewDataSource, FLEXMultiColumnTableViewDelegate>
 
-@property (nonatomic, strong) FLEXMultiColumnTableView *multiColumnView;
+@property (nonatomic) FLEXMultiColumnTableView *multiColumnView;
 
 @end
 
@@ -40,7 +40,7 @@
                            CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
         
         _multiColumnView.autoresizingMask          = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleTopMargin;
-        _multiColumnView.backgroundColor           = [UIColor whiteColor];
+        _multiColumnView.backgroundColor           = UIColor.whiteColor;
         _multiColumnView.dataSource                = self;
         _multiColumnView.delegate                  = self;
     }
@@ -151,8 +151,8 @@
         return result;
     }];
     if (sortType == FLEXTableColumnHeaderSortTypeDesc) {
-        NSEnumerator *contentReverseEnumerator = [sortContentData reverseObjectEnumerator];
-        sortContentData = [NSArray arrayWithArray:[contentReverseEnumerator allObjects]];
+        NSEnumerator *contentReverseEnumerator = sortContentData.reverseObjectEnumerator;
+        sortContentData = [NSArray arrayWithArray:contentReverseEnumerator.allObjects];
     }
     
     self.contentsArray = sortContentData;
