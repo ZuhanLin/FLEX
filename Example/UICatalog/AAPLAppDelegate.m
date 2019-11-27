@@ -58,8 +58,8 @@
 
 @interface AAPLAppDelegate () <NSURLConnectionDataDelegate, NSURLSessionDataDelegate>
 
-@property (nonatomic, strong) NSTimer *repeatingLogExampleTimer;
-@property (nonatomic, strong) NSMutableArray *connections;
+@property (nonatomic) NSTimer *repeatingLogExampleTimer;
+@property (nonatomic) NSMutableArray *connections;
 
 @end
 
@@ -112,7 +112,7 @@
     });
 
     // NSURLSession
-    NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
+    NSURLSessionConfiguration *config = NSURLSessionConfiguration.defaultSessionConfiguration;
     config.timeoutIntervalForRequest = 10.0;
     NSURLSession *mySession = [NSURLSession sessionWithConfiguration:config delegate:self delegateQueue:[NSOperationQueue mainQueue]];
 
@@ -125,12 +125,12 @@
     [pendingTasks addObject:[mySession downloadTaskWithURL:[NSURL URLWithString:@"https://assets-cdn.github.com/images/icons/emoji/unicode/1f44d.png?v5"]]];
 
     // Async NSURLSessionDownloadTask
-    [pendingTasks addObject:[[NSURLSession sharedSession] downloadTaskWithURL:[NSURL URLWithString:@"http://lorempixel.com/1024/1024/"] completionHandler:^(NSURL *location, NSURLResponse *response, NSError *error) {
+    [pendingTasks addObject:[NSURLSession.sharedSession downloadTaskWithURL:[NSURL URLWithString:@"http://lorempixel.com/1024/1024/"] completionHandler:^(NSURL *location, NSURLResponse *response, NSError *error) {
 
     }]];
 
     // Async NSURLSessionDataTask
-    [pendingTasks addObject:[[NSURLSession sharedSession] dataTaskWithURL:[NSURL URLWithString:@"https://api.github.com/emojis"] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+    [pendingTasks addObject:[NSURLSession.sharedSession dataTaskWithURL:[NSURL URLWithString:@"https://api.github.com/emojis"] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
 
     }]];
 
@@ -169,7 +169,7 @@
     for (NSString *urlString in requestURLStrings) {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayTime * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:urlString]];
-            [self.connections addObject:[[NSURLConnection alloc] initWithRequest:request delegate:self]];
+            [self.connections addObject:[NSURLConnection connectionWithRequest:request delegate:self]];
         });
         delayTime += stagger;
     }
@@ -193,9 +193,9 @@
 #if __has_include(<Realm/Realm.h>)
 - (void)setUpRealm
 {
-    NSString *destinationPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
+    NSString *destinationPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
     destinationPath = [destinationPath stringByAppendingPathComponent:@"dogs.realm"];
-    if ([[NSFileManager defaultManager] fileExistsAtPath:destinationPath isDirectory:nil]) {
+    if ([NSFileManager.defaultManager fileExistsAtPath:destinationPath isDirectory:nil]) {
         return;
     }
     
@@ -205,7 +205,7 @@
     }
     
     NSError *error = nil;
-    [[NSFileManager defaultManager] copyItemAtPath:resourcePath toPath:destinationPath error:&error];
+    [NSFileManager.defaultManager copyItemAtPath:resourcePath toPath:destinationPath error:&error];
 }
 #endif
 

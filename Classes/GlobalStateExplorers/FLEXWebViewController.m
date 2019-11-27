@@ -12,8 +12,8 @@
 
 @interface FLEXWebViewController () <WKNavigationDelegate>
 
-@property (nonatomic, strong) WKWebView *webView;
-@property (nonatomic, strong) NSString *originalText;
+@property (nonatomic) WKWebView *webView;
+@property (nonatomic) NSString *originalText;
 
 @end
 
@@ -25,7 +25,9 @@
     if (self) {
         WKWebViewConfiguration *configuration = [WKWebViewConfiguration new];
 
-        configuration.dataDetectorTypes = UIDataDetectorTypeLink;
+        if (@available(iOS 10.0, *)) {
+            configuration.dataDetectorTypes = UIDataDetectorTypeLink;
+        }
 
         self.webView = [[WKWebView alloc] initWithFrame:CGRectZero configuration:configuration];
         self.webView.navigationDelegate = self;
@@ -70,14 +72,14 @@
     self.webView.frame = self.view.bounds;
     self.webView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     
-    if ([self.originalText length] > 0) {
+    if (self.originalText.length > 0) {
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Copy" style:UIBarButtonItemStylePlain target:self action:@selector(copyButtonTapped:)];
     }
 }
 
 - (void)copyButtonTapped:(id)sender
 {
-    [[UIPasteboard generalPasteboard] setString:self.originalText];
+    [UIPasteboard.generalPasteboard setString:self.originalText];
 }
 
 

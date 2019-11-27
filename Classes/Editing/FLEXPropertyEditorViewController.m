@@ -12,10 +12,11 @@
 #import "FLEXArgumentInputView.h"
 #import "FLEXArgumentInputViewFactory.h"
 #import "FLEXArgumentInputSwitchView.h"
+#import "FLEXUtility.h"
 
 @interface FLEXPropertyEditorViewController () <FLEXArgumentInputViewDelegate>
 
-@property (nonatomic, assign) objc_property_t property;
+@property (nonatomic) objc_property_t property;
 
 @end
 
@@ -39,7 +40,7 @@
     id currentValue = [FLEXRuntimeUtility valueForProperty:self.property onObject:self.target];
     self.setterButton.enabled = [[self class] canEditProperty:self.property onObject:self.target currentValue:currentValue];
     
-    const char *typeEncoding = [[FLEXRuntimeUtility typeEncodingForProperty:self.property] UTF8String];
+    const char *typeEncoding = [FLEXRuntimeUtility typeEncodingForProperty:self.property].UTF8String;
     FLEXArgumentInputView *inputView = [FLEXArgumentInputViewFactory argumentInputViewForTypeEncoding:typeEncoding];
     inputView.backgroundColor = self.view.backgroundColor;
     inputView.inputValue = [FLEXRuntimeUtility valueForProperty:self.property onObject:self.target];
@@ -62,10 +63,7 @@
     NSError *error = nil;
     [FLEXRuntimeUtility performSelector:setterSelector onObject:self.target withArguments:arguments error:&error];
     if (error) {
-        NSString *title = @"Property Setter Failed";
-        NSString *message = [error localizedDescription];
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [alert show];
+        [FLEXAlert showAlert:@"Property Setter Failed" message:[error localizedDescription] from:self];
         self.firstInputView.inputValue = [FLEXRuntimeUtility valueForProperty:self.property onObject:self.target];
     } else {
         // If the setter was called without error, pop the view controller to indicate that and make the user's life easier.
@@ -92,7 +90,7 @@
 
 + (BOOL)canEditProperty:(objc_property_t)property onObject:(id)object currentValue:(id)value
 {
-    const char *typeEncoding = [[FLEXRuntimeUtility typeEncodingForProperty:property] UTF8String];
+    const char *typeEncoding = [FLEXRuntimeUtility typeEncodingForProperty:property].UTF8String;
     BOOL canEditType = [FLEXArgumentInputViewFactory canEditFieldWithTypeEncoding:typeEncoding currentValue:value];
     SEL setterSelector = [FLEXRuntimeUtility setterSelectorForProperty:property];
     BOOL isReadonly = [FLEXRuntimeUtility isReadonlyProperty:property] && (!setterSelector || ![object respondsToSelector:setterSelector]);

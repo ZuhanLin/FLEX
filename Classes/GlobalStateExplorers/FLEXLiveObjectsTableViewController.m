@@ -10,6 +10,7 @@
 #import "FLEXHeapEnumerator.h"
 #import "FLEXInstancesTableViewController.h"
 #import "FLEXUtility.h"
+#import "FLEXScopeCarousel.h"
 #import <objc/runtime.h>
 
 static const NSInteger kFLEXLiveObjectsSortAlphabeticallyIndex = 0;
@@ -18,10 +19,10 @@ static const NSInteger kFLEXLiveObjectsSortBySizeIndex = 2;
 
 @interface FLEXLiveObjectsTableViewController ()
 
-@property (nonatomic, strong) NSDictionary<NSString *, NSNumber *> *instanceCountsForClassNames;
-@property (nonatomic, strong) NSDictionary<NSString *, NSNumber *> *instanceSizesForClassNames;
+@property (nonatomic) NSDictionary<NSString *, NSNumber *> *instanceCountsForClassNames;
+@property (nonatomic) NSDictionary<NSString *, NSNumber *> *instanceSizesForClassNames;
 @property (nonatomic, readonly) NSArray<NSString *> *allClassNames;
-@property (nonatomic, strong) NSArray<NSString *> *filteredClassNames;
+@property (nonatomic) NSArray<NSString *> *filteredClassNames;
 
 @end
 
@@ -33,10 +34,10 @@ static const NSInteger kFLEXLiveObjectsSortBySizeIndex = 2;
     
     self.showsSearchBar = YES;
     self.searchBarDebounceInterval = kFLEXDebounceInstant;
-    self.searchController.searchBar.showsScopeBar = YES;
-    self.searchController.searchBar.scopeButtonTitles = @[@"Sort Alphabetically", @"Sort by Count", @"Sort by Size"];
+    self.showsCarousel = YES;
+    self.carousel.items = @[@"A→Z", @"Count", @"Size"];
     
-    self.refreshControl = [[UIRefreshControl alloc] init];
+    self.refreshControl = [UIRefreshControl new];
     [self.refreshControl addTarget:self action:@selector(refreshControlDidRefresh:) forControlEvents:UIControlEventValueChanged];
     
     [self reloadTableData];
@@ -44,7 +45,7 @@ static const NSInteger kFLEXLiveObjectsSortBySizeIndex = 2;
 
 - (NSArray<NSString *> *)allClassNames
 {
-    return [self.instanceCountsForClassNames allKeys];
+    return self.instanceCountsForClassNames.allKeys;
 }
 
 - (void)reloadTableData
@@ -86,7 +87,7 @@ static const NSInteger kFLEXLiveObjectsSortBySizeIndex = 2;
     self.instanceCountsForClassNames = mutableCountsForClassNames;
     self.instanceSizesForClassNames = mutableSizesForClassNames;
     
-    [self updateTableDataForSearchFilter:nil];
+    [self updateSearchResults:nil];
 }
 
 - (void)refreshControlDidRefresh:(id)sender
@@ -127,27 +128,22 @@ static const NSInteger kFLEXLiveObjectsSortBySizeIndex = 2;
 }
 
 
-#pragma mark - FLEXGlobalsTableViewControllerEntry
+#pragma mark - FLEXGlobalsEntry
 
-+ (NSString *)globalsEntryTitle {
++ (NSString *)globalsEntryTitle:(FLEXGlobalsRow)row {
     return @"💩  Heap Objects";
 }
 
-+ (instancetype)globalsEntryViewController {
++ (UIViewController *)globalsEntryViewController:(FLEXGlobalsRow)row {
     return [self new];
 }
 
 
 #pragma mark - Search bar
 
-- (void)updateSearchResults:(NSString *)newText
+- (void)updateSearchResults:(NSString *)filter
 {
-    [self updateTableDataForSearchFilter:newText];
-}
-
-- (void)updateTableDataForSearchFilter:(NSString *)filter
-{
-    NSInteger selectedScope = self.searchController.searchBar.selectedScopeButtonIndex;
+    NSInteger selectedScope = self.selectedScope;
     
     if (filter.length) {
         NSPredicate *searchPredicate = [NSPredicate predicateWithFormat:@"SELF CONTAINS[cd] %@", filter];
@@ -190,7 +186,7 @@ static const NSInteger kFLEXLiveObjectsSortBySizeIndex = 2;
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.filteredClassNames count];
+    return self.filteredClassNames.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

@@ -14,10 +14,10 @@
 
 @interface FLEXLibrariesTableViewController ()
 
-@property (nonatomic, strong) NSArray<NSString *> *imageNames;
-@property (nonatomic, strong) NSArray<NSString *> *filteredImageNames;
+@property (nonatomic) NSArray<NSString *> *imageNames;
+@property (nonatomic) NSArray<NSString *> *filteredImageNames;
 
-@property (nonatomic, strong) Class foundClass;
+@property (nonatomic) Class foundClass;
 
 @end
 
@@ -40,15 +40,15 @@
 }
 
 
-#pragma mark - FLEXGlobalsTableViewControllerEntry
+#pragma mark - FLEXGlobalsEntry
 
-+ (NSString *)globalsEntryTitle {
++ (NSString *)globalsEntryTitle:(FLEXGlobalsRow)row {
     return @"📚  System Libraries";
 }
 
-+ (instancetype)globalsEntryViewController {
++ (UIViewController *)globalsEntryViewController:(FLEXGlobalsRow)row {
     FLEXLibrariesTableViewController *librariesViewController = [self new];
-    librariesViewController.title = [self globalsEntryTitle];
+    librariesViewController.title = [self globalsEntryTitle:row];
 
     return librariesViewController;
 }
@@ -172,7 +172,7 @@
         objectExplorer.object = self.foundClass;
         [self.navigationController pushViewController:objectExplorer animated:YES];
     } else {
-        FLEXClassesTableViewController *classesViewController = [[FLEXClassesTableViewController alloc] init];
+        FLEXClassesTableViewController *classesViewController = [FLEXClassesTableViewController new];
         classesViewController.binaryImageName = self.filteredImageNames[self.foundClass ? indexPath.row-1 : indexPath.row];
         [self.navigationController pushViewController:classesViewController animated:YES];
     }

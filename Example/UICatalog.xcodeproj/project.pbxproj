@@ -47,8 +47,6 @@
 		779B1EF51C0C4F25001F5E49 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 779B1EF41C0C4F25001F5E49 /* libsqlite3.dylib */; };
 		943203FE1978F42F00E24DB3 /* AAPLCatalogTableTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 943203FD1978F42F00E24DB3 /* AAPLCatalogTableTableViewController.m */; };
 		94CB4D431A97183E0054A905 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 94CB4D421A97183E0054A905 /* libz.dylib */; };
-		950C2BE822A61D0F00200C3E /* TestView.m in Sources */ = {isa = PBXBuildFile; fileRef = 950C2BE622A61D0F00200C3E /* TestView.m */; };
-		950C2BE922A61D0F00200C3E /* TestView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 950C2BE722A61D0F00200C3E /* TestView.xib */; };
 		C34A709922B2EBB4009C2C5F /* image in Resources */ = {isa = PBXBuildFile; fileRef = C34A709522B2EBB4009C2C5F /* image */; };
 		C34A709A22B2EBB4009C2C5F /* image.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = C34A709622B2EBB4009C2C5F /* image.jpeg */; };
 		C34A709B22B2EBB4009C2C5F /* image.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C34A709722B2EBB4009C2C5F /* image.jpg */; };
@@ -145,9 +143,6 @@
 		943203FC1978F42F00E24DB3 /* AAPLCatalogTableTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAPLCatalogTableTableViewController.h; sourceTree = "<group>"; };
 		943203FD1978F42F00E24DB3 /* AAPLCatalogTableTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAPLCatalogTableTableViewController.m; sourceTree = "<group>"; };
 		94CB4D421A97183E0054A905 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
-		950C2BE522A61D0F00200C3E /* TestView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestView.h; sourceTree = "<group>"; };
-		950C2BE622A61D0F00200C3E /* TestView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestView.m; sourceTree = "<group>"; };
-		950C2BE722A61D0F00200C3E /* TestView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestView.xib; sourceTree = "<group>"; };
 		C34A709522B2EBB4009C2C5F /* image */ = {isa = PBXFileReference; lastKnownFileType = file; name = image; path = UICatalog/image; sourceTree = "<group>"; };
 		C34A709622B2EBB4009C2C5F /* image.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = image.jpeg; path = UICatalog/image.jpeg; sourceTree = "<group>"; };
 		C34A709722B2EBB4009C2C5F /* image.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = image.jpg; path = UICatalog/image.jpg; sourceTree = "<group>"; };
@@ -309,9 +304,6 @@
 				5356824918F3656900BAAD62 /* main.m */,
 				5356827B18F3670300BAAD62 /* AAPLAppDelegate.h */,
 				5356827C18F3670300BAAD62 /* AAPLAppDelegate.m */,
-				950C2BE522A61D0F00200C3E /* TestView.h */,
-				950C2BE622A61D0F00200C3E /* TestView.m */,
-				950C2BE722A61D0F00200C3E /* TestView.xib */,
 				535682A518F3670300BAAD62 /* UIColor+AAPLApplicationSpecific.h */,
 				535682A618F3670300BAAD62 /* UIColor+AAPLApplicationSpecific.m */,
 				5356824F18F3656900BAAD62 /* Main_iPhone.storyboard */,
@@ -374,8 +366,8 @@
 				ORGANIZATIONNAME = f;
 				TargetAttributes = {
 					5356823918F3656900BAAD62 = {
-						DevelopmentTeam = 6C68T99MA8;
-						ProvisioningStyle = Manual;
+						DevelopmentTeam = S6N2F22V2Z;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -402,7 +394,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				950C2BE922A61D0F00200C3E /* TestView.xib in Resources */,
 				C34A709922B2EBB4009C2C5F /* image in Resources */,
 				C34A709A22B2EBB4009C2C5F /* image.jpeg in Resources */,
 				C34A709B22B2EBB4009C2C5F /* image.jpg in Resources */,
@@ -439,7 +430,6 @@
 				C34C811A22678CF5006C4D4B /* Person.m in Sources */,
 				535682BE18F3670300BAAD62 /* AAPLWebViewController.m in Sources */,
 				535682BB18F3670300BAAD62 /* AAPLTextFieldViewController.m in Sources */,
-				950C2BE822A61D0F00200C3E /* TestView.m in Sources */,
 				535682BF18F3670300BAAD62 /* UIColor+AAPLApplicationSpecific.m in Sources */,
 				535682B718F3670300BAAD62 /* AAPLSliderViewController.m in Sources */,
 				535682B918F3670300BAAD62 /* AAPLStepperViewController.m in Sources */,
@@ -539,6 +529,10 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				WARNING_CFLAGS = (
+					"-Wno-deprecated-declarations",
+					"-Wno-deprecated-implementations",
+				);
 			};
 			name = Debug;
 		};
@@ -586,6 +580,10 @@
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
+				WARNING_CFLAGS = (
+					"-Wno-deprecated-declarations",
+					"-Wno-deprecated-implementations",
+				);
 			};
 			name = Release;
 		};
@@ -593,8 +591,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = 6C68T99MA8;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = S6N2F22V2Z;
 				EXCLUDED_SOURCE_FILE_NAMES = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -603,10 +602,11 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "UICatalog/UICatalog-Prefix.pch";
 				INFOPLIST_FILE = "UICatalog/UICatalog-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.hypechat.flex;
+				PRODUCT_BUNDLE_IDENTIFIER = com.flipboard.FLEX.example2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "match Development com.hypechat.*";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -615,6 +615,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = S6N2F22V2Z;
 				EXCLUDED_SOURCE_FILE_NAMES = "FLEX*";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -624,9 +626,11 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "UICatalog/UICatalog-Prefix.pch";
 				INFOPLIST_FILE = "UICatalog/UICatalog-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.hypechat.flex;
+				PRODUCT_BUNDLE_IDENTIFIER = com.flipboard.FLEX.example2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

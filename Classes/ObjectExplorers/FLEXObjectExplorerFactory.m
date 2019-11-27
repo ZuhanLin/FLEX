@@ -61,10 +61,62 @@
         }
     }
     
-    FLEXObjectExplorerViewController *explorerViewController = [[explorerClass alloc] init];
+    FLEXObjectExplorerViewController *explorerViewController = [explorerClass new];
     explorerViewController.object = object;
     
     return explorerViewController;
+}
+
+#pragma mark - FLEXGlobalsEntry
+
++ (NSString *)globalsEntryTitle:(FLEXGlobalsRow)row 
+{
+    switch (row) {
+        case FLEXGlobalsRowAppDelegate:
+            return @"👉  App delegate";
+        case FLEXGlobalsRowRootViewController:
+            return @"🌴  Root view controller";
+        case FLEXGlobalsRowProcessInfo:
+            return @"🚦  NSProcessInfo.processInfo";
+        case FLEXGlobalsRowUserDefaults:
+            return @"💾  Preferences (NSUserDefaults)";
+        case FLEXGlobalsRowMainBundle:
+            return @"📦  NSBundle.mainBundle";
+        case FLEXGlobalsRowApplication:
+            return @"🚀  UIApplication.sharedApplication";
+        case FLEXGlobalsRowMainScreen:
+            return @"💻  UIScreen.mainScreen";
+        case FLEXGlobalsRowCurrentDevice:
+            return @"📱  UIDevice.currentDevice";
+        case FLEXGlobalsRowPasteboard:
+            return @"📋  UIPasteboard.generalPasteboard";
+        default: return nil;
+    }
+}
+
++ (UIViewController *)globalsEntryViewController:(FLEXGlobalsRow)row 
+{
+    switch (row) {
+        case FLEXGlobalsRowAppDelegate: {
+            id<UIApplicationDelegate> appDelegate = UIApplication.sharedApplication.delegate;
+            return [self explorerViewControllerForObject:appDelegate];
+        }
+        case FLEXGlobalsRowProcessInfo:
+            return [self explorerViewControllerForObject:NSProcessInfo.processInfo];
+        case FLEXGlobalsRowUserDefaults:
+            return [self explorerViewControllerForObject:NSUserDefaults.standardUserDefaults];
+        case FLEXGlobalsRowMainBundle:
+            return [self explorerViewControllerForObject:NSBundle.mainBundle];
+        case FLEXGlobalsRowApplication:
+            return [self explorerViewControllerForObject:UIApplication.sharedApplication];
+        case FLEXGlobalsRowMainScreen:
+            return [self explorerViewControllerForObject:UIScreen.mainScreen];
+        case FLEXGlobalsRowCurrentDevice:
+            return [self explorerViewControllerForObject:UIDevice.currentDevice];
+        case FLEXGlobalsRowPasteboard:
+            return [self explorerViewControllerForObject:UIPasteboard.generalPasteboard];
+        default: return nil;
+    }
 }
 
 @end

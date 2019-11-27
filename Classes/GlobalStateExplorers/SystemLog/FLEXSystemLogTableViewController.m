@@ -104,25 +104,24 @@
     NSString *body = @"In iOS 10 and up, ASL is gone. The OS Log API is much more limited. "
     "To get as close to the old behavior as possible, logs must be collected manually at launch and stored.\n\n"
     "Turn this feature on only when you need it.";
-    
-    UIAlertController *settings = [UIAlertController alertControllerWithTitle:title message:body preferredStyle:UIAlertControllerStyleAlert];
-    [settings addAction:[UIAlertAction actionWithTitle:toggle style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-        [[NSUserDefaults standardUserDefaults] setBool:!persistent forKey:kFLEXiOSPersistentOSLogKey];
-        logController.persistent = !persistent;
-        [logController.messages addObjectsFromArray:self.logMessages];
-    }]];
-    [settings addAction:[UIAlertAction actionWithTitle:@"Dismiss" style:UIAlertActionStyleCancel handler:nil]];
-    
-    [self presentViewController:settings animated:YES completion:nil];
+
+    [FLEXAlert makeAlert:^(FLEXAlert *make) {
+        make.title(title).message(body).button(toggle).handler(^(NSArray<NSString *> *strings) {
+            [[NSUserDefaults standardUserDefaults] setBool:!persistent forKey:kFLEXiOSPersistentOSLogKey];
+            logController.persistent = !persistent;
+            [logController.messages addObjectsFromArray:self.logMessages];
+        });
+        make.button(@"Dismiss").cancelStyle();
+    } showFrom:self];
 }
 
-#pragma mark - FLEXGlobalsTableViewControllerEntry
+#pragma mark - FLEXGlobalsEntry
 
-+ (NSString *)globalsEntryTitle {
++ (NSString *)globalsEntryTitle:(FLEXGlobalsRow)row {
     return @"⚠️  System Log";
 }
 
-+ (instancetype)globalsEntryViewController {
++ (UIViewController *)globalsEntryViewController:(FLEXGlobalsRow)row {
     return [self new];
 }
 
@@ -175,7 +174,7 @@
 {
     if (action == @selector(copy:)) {
         // We usually only want to copy the log message itself, not any metadata associated with it.
-        [UIPasteboard generalPasteboard].string = [self logMessageAtIndexPath:indexPath].messageText;
+        UIPasteboard.generalPasteboard.string = [self logMessageAtIndexPath:indexPath].messageText;
     }
 }
 

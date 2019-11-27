@@ -7,6 +7,7 @@
 //
 
 #import "FLEXColor.h"
+#import "FLEXUtility.h"
 #import "FLEXNetworkHistoryTableViewController.h"
 #import "FLEXNetworkTransaction.h"
 #import "FLEXNetworkTransactionTableViewCell.h"
@@ -19,12 +20,12 @@
 
 /// Backing model
 @property (nonatomic, copy) NSArray<FLEXNetworkTransaction *> *networkTransactions;
-@property (nonatomic, assign) long long bytesReceived;
+@property (nonatomic) long long bytesReceived;
 @property (nonatomic, copy) NSArray<FLEXNetworkTransaction *> *filteredNetworkTransactions;
-@property (nonatomic, assign) long long filteredBytesReceived;
+@property (nonatomic) long long filteredBytesReceived;
 
-@property (nonatomic, assign) BOOL rowInsertInProgress;
-@property (nonatomic, assign) BOOL isPresentingSearch;
+@property (nonatomic) BOOL rowInsertInProgress;
+@property (nonatomic) BOOL isPresentingSearch;
 
 @end
 
@@ -34,10 +35,10 @@
 {
     self = [super initWithStyle:UITableViewStylePlain];
     if (self) {
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNewTransactionRecordedNotification:) name:kFLEXNetworkRecorderNewTransactionNotification object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleTransactionUpdatedNotification:) name:kFLEXNetworkRecorderTransactionUpdatedNotification object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleTransactionsClearedNotification:) name:kFLEXNetworkRecorderTransactionsClearedNotification object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNetworkObserverEnabledStateChangedNotification:) name:kFLEXNetworkObserverEnabledStateChangedNotification object:nil];
+        [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(handleNewTransactionRecordedNotification:) name:kFLEXNetworkRecorderNewTransactionNotification object:nil];
+        [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(handleTransactionUpdatedNotification:) name:kFLEXNetworkRecorderTransactionUpdatedNotification object:nil];
+        [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(handleTransactionsClearedNotification:) name:kFLEXNetworkRecorderTransactionsClearedNotification object:nil];
+        [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(handleNetworkObserverEnabledStateChangedNotification:) name:kFLEXNetworkObserverEnabledStateChangedNotification object:nil];
         self.title = @"📡  Network";
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Settings" style:UIBarButtonItemStylePlain target:self action:@selector(settingsButtonTapped:)];
 
@@ -50,7 +51,7 @@
 
 - (void)dealloc
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [NSNotificationCenter.defaultCenter removeObserver:self];
 }
 
 - (void)viewDidLoad
@@ -68,7 +69,7 @@
 
 - (void)settingsButtonTapped:(id)sender
 {
-    FLEXNetworkSettingsTableViewController *settingsViewController = [[FLEXNetworkSettingsTableViewController alloc] init];
+    FLEXNetworkSettingsTableViewController *settingsViewController = [FLEXNetworkSettingsTableViewController new];
     settingsViewController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(settingsViewControllerDoneTapped:)];
     settingsViewController.title = @"Network Debugging Settings";
     UINavigationController *wrapperNavigationController = [[UINavigationController alloc] initWithRootViewController:settingsViewController];
@@ -140,10 +141,10 @@
         NSInteger totalRequests = 0;
         if (self.searchController.isActive) {
             bytesReceived = self.filteredBytesReceived;
-            totalRequests = [self.filteredNetworkTransactions count];
+            totalRequests = self.filteredNetworkTransactions.count;
         } else {
             bytesReceived = self.bytesReceived;
-            totalRequests = [self.networkTransactions count];
+            totalRequests = self.networkTransactions.count;
         }
         NSString *byteCountText = [NSByteCountFormatter stringFromByteCount:bytesReceived countStyle:NSByteCountFormatterCountStyleBinary];
         NSString *requestsText = totalRequests == 1 ? @"Request" : @"Requests";
@@ -154,13 +155,13 @@
     return headerText;
 }
 
-#pragma mark - FLEXGlobalsTableViewControllerEntry
+#pragma mark - FLEXGlobalsEntry
 
-+ (NSString *)globalsEntryTitle {
++ (NSString *)globalsEntryTitle:(FLEXGlobalsRow)row {
     return @"📡  Network History";
 }
 
-+ (instancetype)globalsEntryViewController {
++ (UIViewController *)globalsEntryViewController:(FLEXGlobalsRow)row {
     return [self new];
 }
 
@@ -185,9 +186,9 @@
         return;
     }
 
-    NSInteger existingRowCount = [self.networkTransactions count];
+    NSInteger existingRowCount = self.networkTransactions.count;
     [self updateTransactions];
-    NSInteger newRowCount = [self.networkTransactions count];
+    NSInteger newRowCount = self.networkTransactions.count;
     NSInteger addedRowCount = newRowCount - existingRowCount;
 
     if (addedRowCount != 0 && !self.isPresentingSearch) {
@@ -252,14 +253,9 @@
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 1;
-}
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.searchController.isActive ? [self.filteredNetworkTransactions count] : [self.networkTransactions count];
+    return self.searchController.isActive ? self.filteredNetworkTransactions.count : self.networkTransactions.count;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
@@ -278,7 +274,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     FLEXNetworkTransactionTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kFLEXNetworkTransactionCellIdentifier forIndexPath:indexPath];
-    cell.transaction = [self transactionAtIndexPath:indexPath inTableView:tableView];
+    cell.transaction = [self transactionAtIndexPath:indexPath];
 
     // Since we insert from the top, assign background colors bottom up to keep them consistent for each transaction.
     NSInteger totalRows = [tableView numberOfRowsInSection:indexPath.section];
@@ -293,8 +289,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    FLEXNetworkTransactionDetailTableViewController *detailViewController = [[FLEXNetworkTransactionDetailTableViewController alloc] init];
-    detailViewController.transaction = [self transactionAtIndexPath:indexPath inTableView:tableView];
+    FLEXNetworkTransactionDetailTableViewController *detailViewController = [FLEXNetworkTransactionDetailTableViewController new];
+    detailViewController.transaction = [self transactionAtIndexPath:indexPath];
     [self.navigationController pushViewController:detailViewController animated:YES];
 }
 
@@ -313,13 +309,40 @@
 - (void)tableView:(UITableView *)tableView performAction:(SEL)action forRowAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender
 {
     if (action == @selector(copy:)) {
-        FLEXNetworkTransaction *transaction = [self transactionAtIndexPath:indexPath inTableView:tableView];
-        NSString *requestURLString = transaction.request.URL.absoluteString ?: @"";
-        [[UIPasteboard generalPasteboard] setString:requestURLString];
+        NSURLRequest *request = [self transactionAtIndexPath:indexPath].request;
+        UIPasteboard.generalPasteboard.string = request.URL.absoluteString ?: @"";
     }
 }
 
-- (FLEXNetworkTransaction *)transactionAtIndexPath:(NSIndexPath *)indexPath inTableView:(UITableView *)tableView
+#if FLEX_AT_LEAST_IOS13_SDK
+
+- (UIContextMenuConfiguration *)tableView:(UITableView *)tableView contextMenuConfigurationForRowAtIndexPath:(NSIndexPath *)indexPath point:(CGPoint)point __IOS_AVAILABLE(13.0)
+{
+    return [UIContextMenuConfiguration
+        configurationWithIdentifier:nil
+        previewProvider:nil
+        actionProvider:^UIMenu *(NSArray<UIMenuElement *> *suggestedActions) {
+            UIAction *copy = [UIAction
+                actionWithTitle:@"Copy"
+                image:nil
+                identifier:nil
+                handler:^(__kindof UIAction *action) {
+                    NSURLRequest *request = [self transactionAtIndexPath:indexPath].request;
+                    UIPasteboard.generalPasteboard.string = request.URL.absoluteString ?: @"";
+                }
+            ];
+            return [UIMenu
+                menuWithTitle:@"" image:nil identifier:nil
+                options:UIMenuOptionsDisplayInline
+                children:@[copy]
+            ];
+        }
+    ];
+}
+
+#endif
+
+- (FLEXNetworkTransaction *)transactionAtIndexPath:(NSIndexPath *)indexPath
 {
     return self.searchController.isActive ? self.filteredNetworkTransactions[indexPath.row] : self.networkTransactions[indexPath.row];
 }
