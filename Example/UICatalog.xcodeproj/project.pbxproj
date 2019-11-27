@@ -47,6 +47,8 @@
 		779B1EF51C0C4F25001F5E49 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 779B1EF41C0C4F25001F5E49 /* libsqlite3.dylib */; };
 		943203FE1978F42F00E24DB3 /* AAPLCatalogTableTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 943203FD1978F42F00E24DB3 /* AAPLCatalogTableTableViewController.m */; };
 		94CB4D431A97183E0054A905 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 94CB4D421A97183E0054A905 /* libz.dylib */; };
+		9501A33C238E7B25009A5585 /* TestView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9501A33A238E7B24009A5585 /* TestView.xib */; };
+		9501A33D238E7B25009A5585 /* TestView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9501A33B238E7B25009A5585 /* TestView.m */; };
 		C34A709922B2EBB4009C2C5F /* image in Resources */ = {isa = PBXBuildFile; fileRef = C34A709522B2EBB4009C2C5F /* image */; };
 		C34A709A22B2EBB4009C2C5F /* image.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = C34A709622B2EBB4009C2C5F /* image.jpeg */; };
 		C34A709B22B2EBB4009C2C5F /* image.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C34A709722B2EBB4009C2C5F /* image.jpg */; };
@@ -143,6 +145,9 @@
 		943203FC1978F42F00E24DB3 /* AAPLCatalogTableTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAPLCatalogTableTableViewController.h; sourceTree = "<group>"; };
 		943203FD1978F42F00E24DB3 /* AAPLCatalogTableTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAPLCatalogTableTableViewController.m; sourceTree = "<group>"; };
 		94CB4D421A97183E0054A905 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		9501A339238E7B24009A5585 /* TestView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestView.h; sourceTree = "<group>"; };
+		9501A33A238E7B24009A5585 /* TestView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestView.xib; sourceTree = "<group>"; };
+		9501A33B238E7B25009A5585 /* TestView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestView.m; sourceTree = "<group>"; };
 		C34A709522B2EBB4009C2C5F /* image */ = {isa = PBXFileReference; lastKnownFileType = file; name = image; path = UICatalog/image; sourceTree = "<group>"; };
 		C34A709622B2EBB4009C2C5F /* image.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = image.jpeg; path = UICatalog/image.jpeg; sourceTree = "<group>"; };
 		C34A709722B2EBB4009C2C5F /* image.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = image.jpg; path = UICatalog/image.jpg; sourceTree = "<group>"; };
@@ -304,6 +309,9 @@
 				5356824918F3656900BAAD62 /* main.m */,
 				5356827B18F3670300BAAD62 /* AAPLAppDelegate.h */,
 				5356827C18F3670300BAAD62 /* AAPLAppDelegate.m */,
+				9501A339238E7B24009A5585 /* TestView.h */,
+				9501A33B238E7B25009A5585 /* TestView.m */,
+				9501A33A238E7B24009A5585 /* TestView.xib */,
 				535682A518F3670300BAAD62 /* UIColor+AAPLApplicationSpecific.h */,
 				535682A618F3670300BAAD62 /* UIColor+AAPLApplicationSpecific.m */,
 				5356824F18F3656900BAAD62 /* Main_iPhone.storyboard */,
@@ -366,8 +374,8 @@
 				ORGANIZATIONNAME = f;
 				TargetAttributes = {
 					5356823918F3656900BAAD62 = {
-						DevelopmentTeam = S6N2F22V2Z;
-						ProvisioningStyle = Automatic;
+						DevelopmentTeam = 6C68T99MA8;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -394,6 +402,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9501A33C238E7B25009A5585 /* TestView.xib in Resources */,
 				C34A709922B2EBB4009C2C5F /* image in Resources */,
 				C34A709A22B2EBB4009C2C5F /* image.jpeg in Resources */,
 				C34A709B22B2EBB4009C2C5F /* image.jpg in Resources */,
@@ -430,6 +439,7 @@
 				C34C811A22678CF5006C4D4B /* Person.m in Sources */,
 				535682BE18F3670300BAAD62 /* AAPLWebViewController.m in Sources */,
 				535682BB18F3670300BAAD62 /* AAPLTextFieldViewController.m in Sources */,
+				9501A33D238E7B25009A5585 /* TestView.m in Sources */,
 				535682BF18F3670300BAAD62 /* UIColor+AAPLApplicationSpecific.m in Sources */,
 				535682B718F3670300BAAD62 /* AAPLSliderViewController.m in Sources */,
 				535682B918F3670300BAAD62 /* AAPLStepperViewController.m in Sources */,
@@ -592,8 +602,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = S6N2F22V2Z;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 6C68T99MA8;
 				EXCLUDED_SOURCE_FILE_NAMES = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -604,9 +614,9 @@
 				INFOPLIST_FILE = "UICatalog/UICatalog-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.flipboard.FLEX.example2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hypechat.flex;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development com.hypechat.*";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -616,8 +626,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = S6N2F22V2Z;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 6C68T99MA8;
 				EXCLUDED_SOURCE_FILE_NAMES = "FLEX*";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -628,9 +638,9 @@
 				INFOPLIST_FILE = "UICatalog/UICatalog-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.flipboard.FLEX.example2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hypechat.flex;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development com.hypechat.*";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
