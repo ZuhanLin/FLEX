@@ -1036,15 +1036,11 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-FLEX/Pods-FLEX-resources.sh",
 				"${PODS_ROOT}/HttpServerDebug-FakeLatest/Resources/HttpServerDebug.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/HttpServerDebug.bundle",
 			);
