@@ -19,6 +19,9 @@ typedef NS_ENUM(NSUInteger, FLEXGlobalsSection) {
     FLEXGlobalsSectionAppShortcuts,
     /// UIPasteBoard.general, UIScreen, UIDevice
     FLEXGlobalsSectionMisc,
+    
+    FLEXGlobalsSectionHttpServerDebug,
+    
     FLEXGlobalsSectionCustom,
     FLEXGlobalsSectionCount
 };

@@ -31,6 +31,7 @@ typedef NS_ENUM(NSUInteger, FLEXGlobalsRow) {
     FLEXGlobalsRowMainScreen,
     FLEXGlobalsRowCurrentDevice,
     FLEXGlobalsRowPasteboard,
+    FLEXGlobalsRowHttpServerDebug,
     FLEXGlobalsRowCount
 };
 

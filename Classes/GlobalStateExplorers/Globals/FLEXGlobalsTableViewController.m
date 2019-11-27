@@ -24,6 +24,8 @@
 #import "FLEXAddressExplorerCoordinator.h"
 #import "FLEXTableViewSection.h"
 
+#import "HSDHttpServerControlPannelController.h"
+
 static __weak UIWindow *s_applicationWindow = nil;
 
 @interface FLEXGlobalsTableViewController ()
@@ -44,6 +46,8 @@ static __weak UIWindow *s_applicationWindow = nil;
             return @"App Shortcuts";
         case FLEXGlobalsSectionMisc:
             return @"Miscellaneous";
+        case FLEXGlobalsSectionHttpServerDebug:
+            return @"HttpServerDebug";
         case FLEXGlobalsSectionCustom:
             return @"Custom Additions";
 
@@ -92,7 +96,17 @@ static __weak UIWindow *s_applicationWindow = nil;
         case FLEXGlobalsRowCurrentDevice:
         case FLEXGlobalsRowPasteboard:
             return [FLEXObjectExplorerFactory flex_concreteGlobalsEntry:row];
-
+        case FLEXGlobalsRowHttpServerDebug:
+            return [FLEXGlobalsEntry
+                entryWithNameFuture:^NSString *{
+                    return @"🛸 HttpServerDebug";
+                } viewControllerFuture:^UIViewController *{
+                    return [[HSDHttpServerControlPannelController alloc] init];
+//                    HSDHttpServerControlPannelController *httpServerControlPannelController = [[HSDHttpServerControlPannelController alloc] init];
+//                    [host.navigationController pushViewController:httpServerControlPannelController animated:YES];
+//                    return [FLEXObjectExplorerFactory explorerViewControllerForObject:s_applicationWindow];
+                }
+            ];
         default:
             @throw [NSException
                 exceptionWithName:NSInternalInconsistencyException
@@ -132,6 +146,10 @@ static __weak UIWindow *s_applicationWindow = nil;
                 [self globalsEntryForRow:FLEXGlobalsRowPasteboard],
                 [self globalsEntryForRow:FLEXGlobalsRowMainScreen],
                 [self globalsEntryForRow:FLEXGlobalsRowCurrentDevice],
+            ],
+                
+            @[ // FLEXGlobalsSectionHttpServerDebug
+                [self globalsEntryForRow:FLEXGlobalsRowHttpServerDebug]
             ]
         ];
         

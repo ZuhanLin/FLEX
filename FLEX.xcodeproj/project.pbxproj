@@ -211,7 +211,6 @@
 		C3F31D432267D883003C991A /* FLEXTableView.h in Headers */ = {isa = PBXBuildFile; fileRef = C3F31D3B2267D883003C991A /* FLEXTableView.h */; };
 		C3F31D442267D883003C991A /* FLEXTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3F31D3C2267D883003C991A /* FLEXTableView.m */; };
 		C9286784CF9E398B8FE77C1D /* libPods-FLEX.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CDC07161F04F5921DAC4C12D /* libPods-FLEX.a */; };
-		E8A9EF69AF21F1669F8E0D45 /* libPods-FLEXTestsMethodsList.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 608898A6595C96711B8B4E24 /* libPods-FLEXTestsMethodsList.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -227,8 +226,6 @@
 /* Begin PBXFileReference section */
 		01F8E616C3E754DC0AE38598 /* Pods-FLEX.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FLEX.release.xcconfig"; path = "Target Support Files/Pods-FLEX/Pods-FLEX.release.xcconfig"; sourceTree = "<group>"; };
 		04F1CA181C137CF1000A52B0 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		18D6E059C4E1D879799786DA /* Pods-FLEXTestsMethodsList.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FLEXTestsMethodsList.debug.xcconfig"; path = "Target Support Files/Pods-FLEXTestsMethodsList/Pods-FLEXTestsMethodsList.debug.xcconfig"; sourceTree = "<group>"; };
-		1C27A8B61F0E5A0300F0D02D /* FLEXTestsMethodsList.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FLEXTestsMethodsList.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C27A8B61F0E5A0300F0D02D /* FLEXTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FLEXTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C27A8B81F0E5A0400F0D02D /* FLEXTestsMethodsList.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FLEXTestsMethodsList.m; sourceTree = "<group>"; };
 		1C27A8BA1F0E5A0400F0D02D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -356,7 +353,6 @@
 		3A4C94C31B5B21410088C3F2 /* FLEXNetworkObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEXNetworkObserver.m; sourceTree = "<group>"; };
 		3A4C94C41B5B21410088C3F2 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		3A4C95461B5B217D0088C3F2 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
-		608898A6595C96711B8B4E24 /* libPods-FLEXTestsMethodsList.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FLEXTestsMethodsList.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		679F64841BD53B7B00A8C94C /* FLEXCookiesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXCookiesTableViewController.h; sourceTree = "<group>"; };
 		679F64851BD53B7B00A8C94C /* FLEXCookiesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEXCookiesTableViewController.m; sourceTree = "<group>"; };
 		71E1C20B2307FBB700F5032A /* FLEXKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXKeychain.h; sourceTree = "<group>"; };
@@ -439,7 +435,6 @@
 		C3F31D3B2267D883003C991A /* FLEXTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXTableView.h; sourceTree = "<group>"; };
 		C3F31D3C2267D883003C991A /* FLEXTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEXTableView.m; sourceTree = "<group>"; };
 		CDC07161F04F5921DAC4C12D /* libPods-FLEX.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FLEX.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		D72D754A86FBE16DE66A504A /* Pods-FLEXTestsMethodsList.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FLEXTestsMethodsList.release.xcconfig"; path = "Target Support Files/Pods-FLEXTestsMethodsList/Pods-FLEXTestsMethodsList.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -448,7 +443,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				1C27A8BB1F0E5A0400F0D02D /* FLEX.framework in Frameworks */,
-				E8A9EF69AF21F1669F8E0D45 /* libPods-FLEXTestsMethodsList.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -725,7 +719,6 @@
 				779B1EDC1C0C4EAD001F5E49 /* libsqlite3.dylib */,
 				3A4C95461B5B217D0088C3F2 /* libz.dylib */,
 				CDC07161F04F5921DAC4C12D /* libPods-FLEX.a */,
-				608898A6595C96711B8B4E24 /* libPods-FLEXTestsMethodsList.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -774,8 +767,6 @@
 			children = (
 				BC4CEAEDE0F677D2C339A7E8 /* Pods-FLEX.debug.xcconfig */,
 				01F8E616C3E754DC0AE38598 /* Pods-FLEX.release.xcconfig */,
-				18D6E059C4E1D879799786DA /* Pods-FLEXTestsMethodsList.debug.xcconfig */,
-				D72D754A86FBE16DE66A504A /* Pods-FLEXTestsMethodsList.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -1020,7 +1011,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1C27A8C01F0E5A0400F0D02D /* Build configuration list for PBXNativeTarget "FLEXTests" */;
 			buildPhases = (
-				81EE069D20EC68B02EA95CEB /* [CP] Check Pods Manifest.lock */,
 				1C27A8B21F0E5A0300F0D02D /* Sources */,
 				1C27A8B31F0E5A0300F0D02D /* Frameworks */,
 				1C27A8B41F0E5A0300F0D02D /* Resources */,
@@ -1129,28 +1119,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FLEX/Pods-FLEX-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		81EE069D20EC68B02EA95CEB /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-FLEXTestsMethodsList-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		99FF38EC74DCA126E54789FF /* [CP] Check Pods Manifest.lock */ = {
@@ -1302,7 +1270,6 @@
 /* Begin XCBuildConfiguration section */
 		1C27A8BE1F0E5A0400F0D02D /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 18D6E059C4E1D879799786DA /* Pods-FLEXTestsMethodsList.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -1319,7 +1286,6 @@
 		};
 		1C27A8BF1F0E5A0400F0D02D /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D72D754A86FBE16DE66A504A /* Pods-FLEXTestsMethodsList.release.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
