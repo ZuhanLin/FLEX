@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name             = "FLEX-DebugView"
-  spec.version          = "3.1.0.3"
+  spec.version          = "3.1.0.4"
 
   spec.summary          = "A set of in-app debugging and exploration tools for iOS"
   spec.description      = <<-DESC
