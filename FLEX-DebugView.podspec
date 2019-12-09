@@ -40,5 +40,5 @@ Pod::Spec.new do |spec|
   spec.resources        = "Classes/Resources/*"
   spec.requires_arc     = true
   spec.public_header_files = [ "Classes/**/FLEXManager.h", "Classes/FLEX.h" ]
-  spec.dependency "HttpServerDebug-FakeLatest", "~> 0.2.1.3"
+  spec.dependency "HttpServerDebug-FakeLatest"
 end
