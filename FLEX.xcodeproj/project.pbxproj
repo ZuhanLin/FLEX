@@ -1109,8 +1109,8 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-FLEX/Pods-FLEX-resources.sh",
-				"${PODS_ROOT}/HttpServerDebug-FakeLatest/Resources/HttpServerDebug.bundle",
+				"${SRCROOT}/Pods/Target Support Files/Pods-FLEX/Pods-FLEX-resources.sh",
+				"${PODS_ROOT}/HttpServerDebug/Resources/HttpServerDebug.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
@@ -1118,7 +1118,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FLEX/Pods-FLEX-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FLEX/Pods-FLEX-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		99FF38EC74DCA126E54789FF /* [CP] Check Pods Manifest.lock */ = {

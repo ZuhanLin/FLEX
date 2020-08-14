@@ -7,7 +7,7 @@ target 'FLEX' do
 
   # Pods for FLEX
 
-  pod 'HttpServerDebug-FakeLatest'
+  pod 'HttpServerDebug'
 
   #target 'FLEXTestsMethodsList' do
     #inherit! :search_paths

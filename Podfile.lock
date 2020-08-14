@@ -2,27 +2,21 @@ PODS:
   - FMDB (2.7.5):
     - FMDB/standard (= 2.7.5)
   - FMDB/standard (2.7.5)
-  - GCDWebServer (3.5.3):
-    - GCDWebServer/Core (= 3.5.3)
-  - GCDWebServer/Core (3.5.3)
-  - HttpServerDebug-FakeLatest (0.2.1.5):
-    - FMDB (~> 2.7.5)
-    - GCDWebServer (~> 3.4)
+  - HttpServerDebug (0.2.2):
+    - FMDB (~> 2.7)
 
 DEPENDENCIES:
-  - HttpServerDebug-FakeLatest (~> 0.2.1.3)
+  - HttpServerDebug
 
 SPEC REPOS:
-  trunk:
+  https://github.com/cocoapods/specs.git:
     - FMDB
-    - GCDWebServer
-    - HttpServerDebug-FakeLatest
+    - HttpServerDebug
 
 SPEC CHECKSUMS:
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
-  GCDWebServer: c0ab22c73e1b84f358d1e2f74bf6afd1c60829f2
-  HttpServerDebug-FakeLatest: d982ab78867c13e342bc4ef461bf6250cc8c4ad7
+  HttpServerDebug: 423c291b21201650253deedad35a36ae3ffaeda9
 
-PODFILE CHECKSUM: 01cfc13692b8227f4d582458ad4d086d092e945b
+PODFILE CHECKSUM: ea1685898d75ff95bf3a4ed7715ca105398d66a1
 
-COCOAPODS: 1.8.3
+COCOAPODS: 1.5.3
