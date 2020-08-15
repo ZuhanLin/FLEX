@@ -37,15 +37,6 @@ Pod::Spec.new do |spec|
   spec.libraries        = [ "z", "sqlite3" ]
   spec.resources        = "Classes/Resources/*"
   spec.requires_arc     = true
-  spec.dependency "HttpServerDebug"
-
-
-#  spec.subspec 'FLEX' do |ss|
-#    ss.source_files     = "Classes/**/*.{h,c,m,mm}"
-#  end
-
-
-
   spec.compiler_flags   = "-Wno-unsupported-availability-guard -Wno-strict-prototypes"
   spec.public_header_files = [ "Classes/*.h", "Classes/Manager/*.h", "Classes/Toolbar/*.h",
                                "Classes/GlobalStateExplorers/Globals/FLEXGlobalsEntry.h",
