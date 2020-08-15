@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		95C4C22524E7CB8000805D3A /* UIWindow+FLEX.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C4C22424E7CB8000805D3A /* UIWindow+FLEX.m */; };
 		C386D6D02419975A00699085 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C386D6CF2419975A00699085 /* AppDelegate.swift */; };
 		C386D6D22419975A00699085 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C386D6D12419975A00699085 /* SceneDelegate.swift */; };
 		C386D6D62419975B00699085 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C386D6D52419975B00699085 /* Assets.xcassets */; };
@@ -29,6 +30,8 @@
 /* Begin PBXFileReference section */
 		33A4EDAC37AA215CF95EEA24 /* Pods-FLEXample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FLEXample.release.xcconfig"; path = "Target Support Files/Pods-FLEXample/Pods-FLEXample.release.xcconfig"; sourceTree = "<group>"; };
 		57041F764D8B1C098B9B4073 /* Pods-FLEXample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FLEXample.debug.xcconfig"; path = "Target Support Files/Pods-FLEXample/Pods-FLEXample.debug.xcconfig"; sourceTree = "<group>"; };
+		95C4C22324E7CB8000805D3A /* UIWindow+FLEX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWindow+FLEX.h"; sourceTree = "<group>"; };
+		95C4C22424E7CB8000805D3A /* UIWindow+FLEX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWindow+FLEX.m"; sourceTree = "<group>"; };
 		BBD699DDBAC5A16D8CFD39AC /* libPods-FLEXample.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FLEXample.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C386D6CC2419975A00699085 /* FLEXample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FLEXample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C386D6CF2419975A00699085 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -68,6 +71,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		95C4C22224E7CB8000805D3A /* Plugins */ = {
+			isa = PBXGroup;
+			children = (
+				95C4C22324E7CB8000805D3A /* UIWindow+FLEX.h */,
+				95C4C22424E7CB8000805D3A /* UIWindow+FLEX.m */,
+			);
+			path = Plugins;
+			sourceTree = "<group>";
+		};
 		C386D6C32419975A00699085 = {
 			isa = PBXGroup;
 			children = (
@@ -90,6 +102,7 @@
 		C386D6CE2419975A00699085 /* FLEXample */ = {
 			isa = PBXGroup;
 			children = (
+				95C4C22224E7CB8000805D3A /* Plugins */,
 				C386D6E72419985E00699085 /* Supporting Files */,
 				C386D6CF2419975A00699085 /* AppDelegate.swift */,
 				C386D6D12419975A00699085 /* SceneDelegate.swift */,
@@ -304,6 +317,7 @@
 			files = (
 				C3A67858241ADDF7005A4681 /* Commit.swift in Sources */,
 				C386D6D02419975A00699085 /* AppDelegate.swift in Sources */,
+				95C4C22524E7CB8000805D3A /* UIWindow+FLEX.m in Sources */,
 				C386D6E62419984700699085 /* CommitListViewController.m in Sources */,
 				C386D70B241AA67800699085 /* Dog.m in Sources */,
 				C3A67856241AB8AD005A4681 /* MiscNetworkRequests.m in Sources */,
