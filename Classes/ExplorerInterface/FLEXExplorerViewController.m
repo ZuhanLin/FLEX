@@ -116,7 +116,7 @@ typedef NS_ENUM(NSUInteger, FLEXExplorerMode) {
     self.accesoryToolView = [[UIView alloc] init];
     self.accesoryToolView.hidden = YES;
     self.accesoryToolView.clipsToBounds = YES;
-    self.accesoryToolView.backgroundColor = [UIColor redColor];
+    self.accesoryToolView.backgroundColor = [UIColor blackColor];
     [self.view addSubview:self.accesoryToolView];
     self.accesoryToolView.frame = CGRectMake(0, CGRectGetMaxY(self.explorerToolbar.frame), CGRectGetWidth(self.explorerToolbar.frame), 300);
     

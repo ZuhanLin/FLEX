@@ -42,8 +42,6 @@ typedef NS_ENUM(NSUInteger, FLEXGlobalsRow) {
     FLEXGlobalsRowMainThread,
     FLEXGlobalsRowOperationQueue,
     FLEXGlobalsRowCount,
-    
-    FLEXGlobalsRowHttpServerDebug,
 };
 
 typedef NSString * _Nonnull (^FLEXGlobalsEntryNameFuture)(void);

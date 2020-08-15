@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		95C4C22524E7CB8000805D3A /* UIWindow+FLEX.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C4C22424E7CB8000805D3A /* UIWindow+FLEX.m */; };
+		95C4C22824E7CD3B00805D3A /* ZHDebugView.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C4C22724E7CD3B00805D3A /* ZHDebugView.m */; };
+		95C4C22A24E7CD4B00805D3A /* ZHDebugView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95C4C22924E7CD4B00805D3A /* ZHDebugView.xib */; };
 		C386D6D02419975A00699085 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C386D6CF2419975A00699085 /* AppDelegate.swift */; };
 		C386D6D22419975A00699085 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C386D6D12419975A00699085 /* SceneDelegate.swift */; };
 		C386D6D62419975B00699085 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C386D6D52419975B00699085 /* Assets.xcassets */; };
@@ -32,6 +34,9 @@
 		57041F764D8B1C098B9B4073 /* Pods-FLEXample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FLEXample.debug.xcconfig"; path = "Target Support Files/Pods-FLEXample/Pods-FLEXample.debug.xcconfig"; sourceTree = "<group>"; };
 		95C4C22324E7CB8000805D3A /* UIWindow+FLEX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWindow+FLEX.h"; sourceTree = "<group>"; };
 		95C4C22424E7CB8000805D3A /* UIWindow+FLEX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWindow+FLEX.m"; sourceTree = "<group>"; };
+		95C4C22624E7CD3B00805D3A /* ZHDebugView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZHDebugView.h; sourceTree = "<group>"; };
+		95C4C22724E7CD3B00805D3A /* ZHDebugView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZHDebugView.m; sourceTree = "<group>"; };
+		95C4C22924E7CD4B00805D3A /* ZHDebugView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ZHDebugView.xib; sourceTree = "<group>"; };
 		BBD699DDBAC5A16D8CFD39AC /* libPods-FLEXample.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FLEXample.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C386D6CC2419975A00699085 /* FLEXample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FLEXample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C386D6CF2419975A00699085 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -76,6 +81,9 @@
 			children = (
 				95C4C22324E7CB8000805D3A /* UIWindow+FLEX.h */,
 				95C4C22424E7CB8000805D3A /* UIWindow+FLEX.m */,
+				95C4C22624E7CD3B00805D3A /* ZHDebugView.h */,
+				95C4C22724E7CD3B00805D3A /* ZHDebugView.m */,
+				95C4C22924E7CD4B00805D3A /* ZHDebugView.xib */,
 			);
 			path = Plugins;
 			sourceTree = "<group>";
@@ -251,6 +259,7 @@
 				C386D6FF241AA4B700699085 /* image.png in Resources */,
 				C386D704241AA61600699085 /* music_library.db in Resources */,
 				C386D6FE241AA4B700699085 /* image in Resources */,
+				95C4C22A24E7CD4B00805D3A /* ZHDebugView.xib in Resources */,
 				C386D6FD241AA4B700699085 /* image.jpeg in Resources */,
 				C386D701241AA4B700699085 /* image.jpg in Resources */,
 				C386D6D92419975B00699085 /* Preview Assets.xcassets in Resources */,
@@ -320,6 +329,7 @@
 				95C4C22524E7CB8000805D3A /* UIWindow+FLEX.m in Sources */,
 				C386D6E62419984700699085 /* CommitListViewController.m in Sources */,
 				C386D70B241AA67800699085 /* Dog.m in Sources */,
+				95C4C22824E7CD3B00805D3A /* ZHDebugView.m in Sources */,
 				C3A67856241AB8AD005A4681 /* MiscNetworkRequests.m in Sources */,
 				C386D70C241AA67800699085 /* Owner.m in Sources */,
 				C386D6D22419975A00699085 /* SceneDelegate.swift in Sources */,
